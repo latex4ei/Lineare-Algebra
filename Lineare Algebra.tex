@@ -27,7 +27,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-   \fancyfoot[C]{\textbf{Lineare Algebra} von Lukas Kompatscher (lukas.kompatscher@tum.de}
+   \fancyfoot[C]{\textbf{Lineare Algebra} von Lukas Kompatscher (lukas.kompatscher@tum.de)}
    \renewcommand{\headrulewidth}{0.0pt} %obere Linie ausblenden
    \renewcommand{\footrulewidth}{0.1pt} %untere Linie
 
@@ -63,6 +63,7 @@
 \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\Bild}{Bild}
 \DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rg}{rg}
 
 
 % Dokumentbeginn
@@ -73,8 +74,8 @@
 
 % Aufteilung in Spalten
 \begin{multicols*}{4}
-\parbox{2.3cm}{
-	\includegraphics[height=2cm]{./img/Logo.pdf}
+\parbox{1.5cm}{
+	\includegraphics[height=1cm]{./img/Logo.pdf}
 }
 \parbox{4cm}{
 	\huge{\textbf{Lineare Algebra}}
@@ -101,38 +102,38 @@ Die Matrix $A=(a_{ij}) \in \mathbb K^{m\times n}$ hat $m$ Zeilen mit Index $i$ u
 
 \begin{tabular}{ll}	
 	1)  $A+0=A$ & 2)  $1 \cdot A=A$ \\
-	3)  $A+B=B+A$ & 4) $A \cdot B \ne B \cdot A$ (im allg.) \\
-	5)  $(A+B)+C=A+(B+C)$ & 6) $\lambda (A+B) = \lambda A + \lambda B$\\ 
+	3)  $A+B=B+A$ & 4) $A \cdot B \ne B \cdot A$ (im Allg.) \\
+	5)  $(A+B)+C=A+(B+C)$ & 6) $a (A+B) = \lambda A + \lambda B$\\ 
 \end{tabular}
 Multiplikation von $A\in \mathbb K^{m\times r}$ und $B\in \mathbb K^{r\times n}$: $AB\in\mathbb K^{m\times n}$
 
-\subsubsection{Elementare Zeilenumformungen (EZF) (auch für Spalten)}
-$A \in \mathbb K^{m\times n}$ hat $m$ Zeilen $z_i\in \mathbb K^n$ und $n$ Spalten $s_j\in \mathbb K^m$
+\subsubsection{Elementare Zeilenumformungen (EZF) (gilt äquiv. für Spalten)}
+$A \in \mathbb K^{m\times n}$ hat $m$ Zeilen $z_i\in \mathbb K^n$
 \begin{itemize}\itemsep0pt
 \item Vertauschen von Zeilen
 \item Multiplikation einer Zeile mit $\lambda\ne 0$ 
-\item Addition ($\lambda\ne 0$):\quad $z_1 + \lambda_2  z_2$
+\item Addition des $\lambda$-fachen der Zeile $z_i$ zur Zeile $z_j$
 \end{itemize}
 
 \subsubsection{Transponieren}
 $A=(a_{ij})\ \in \mathbb K^{m\times n}$ gilt: $A^\top=(a_{ji})\ \in \mathbb K^{n\times m}$\\
-Regeln:\\
+\textbf{Regeln:}\\
 $(A+B)^\top=A^\top+B^\top$\qquad $(A\cdot B)^\top=B^\top\cdot A^\top$\qquad \\
 $(\lambda A)^\top=\lambda A^\top$ \qquad \qquad \qquad $(A^\top)^\top=A$\\
 \\
 $A\in \mathbb K^{n\times n}$ ist symmetrisch, falls $A=A^\top$\qquad ($\Rightarrow$ diagbar)\\
 $A\in \mathbb K^{n\times n}$ ist schiefsymmetrisch, falls $A=-A^\top$\\
 $A\in \mathbb K^{n\times n}$ ist orthogonal (Spalten-/Zeilenvektoren=ONB), falls:\\
-$AA^\top=E_n \quad \lor \quad A^\top=A^{-1} \quad \lor \quad \det A=\pm 1$\\
+$AA^\top=E_n \quad \Leftrightarrow \quad A^\top=A^{-1} \quad \Leftrightarrow \quad \det A=\pm 1$\\
 $A\in \mathbb C^{n\times n}$ ist hermitesch, falls $A=\overline{A}^\top$  \quad (kmplx. konj. u. transp.)
 
 
-\subsubsection{Inverse Matrix $A^{-1}\in \mathbb K^{n\times n}$}
-für die inverse Matrix $A^{-1}$ von $A$ gilt: $A^{-1}A=E_n$\\
+\subsubsection{Inverse Matrix von $A\in \mathbb K^{n\times n}$}
+Für die inverse Matrix $A^{-1}$ von $A$ gilt: $A^{-1}A=E_n$\\
 $(A^{-1})^{-1}=A$ \qquad $(AB)^{-1}=B^{-1}A^{-1}$ \\
 $(A^\top)^{-1}=(A^{-1})^\top$\\
 \\
-$A\ \in \mathbb R^{n\times n}$ ist invertierbar, falls: $\det (A) \ne 0 \quad \lor \quad rg(A)=n$\\
+$A\ \in \mathbb K^{n\times n}$ ist invertierbar, falls: $\det (A) \ne 0 \quad \lor \quad rg(A)=n$\\
 \\
 Berechnen von $A^{-1}$ nach Gauß:\\
 $AA^{-1}=E_n\quad\Rightarrow\quad (A|E_n)\overset{EZF}{\longrightarrow}(E_n|A^{-1})$\\
@@ -145,11 +146,12 @@ d & -b \\
 \end{pmatrix}$
 
 \subsubsection{Rang einer Matrix $A\in \mathbb K^{m\times n}$}
+{\tiny (N0-Zeilen = Nicht-Null-Zeilen)}\\ \\
 \textbf{Bringe A auf ZSF} \\
-Rang (Zeilrang) $\mathrm{rg}(A)$: Anzahl N0-Zeilen \\     
+Rang (Zeilrang) $\rg(A)$: Anzahl N0-Zeilen \\     
 Zeilenraum $Z_A$: Erzeugnis der Zeilen, $\text{Basis}(Z_A) = \{\text{ N0-Zeilen }\}$ \\
-Kern: $\ker(A) = \dme{x \in \mathbb R^n}{Ax= 0}$ \\
-Dimensionsformel: $\mathrm{rg}(A) + \mathrm{dim}(\ker(A)) = n$ \\
+Kern: $\ker(A) = \dme{x \in \mathbb K^n}{Ax= 0}$ \\
+Dimensionsformel: $\rg(A) + \mathrm{dim}(\ker(A)) = n$ \\
 \textbf{Bringe A auf Spaltenstufenform (transponieren, ZSF)} \\
 Spaltenrang: Anzahl der N0-Spalten\\
 Spaltenraum $S_A$: Erzeugnis der Spalten, $\text{Basis}(S_A) = \{\text{ N0-Spalten }\}$ \\
@@ -158,8 +160,8 @@ Bild = Spaltenraum: Erzeugnis der Spalten
 Das LGS $Ax=b$ kurz $(A|b)$ mit $A\in \mathbb K^{m\times n}$, $x\in \mathbb K^n$, $b\in \mathbb K^m$ hat $m$ Gleichungen und $n$ Unbekannte.\\
 \\
 \textbf{Lösbarkeitskriterium:}\\
-Ein LGS $(A|b)$ ist genau dann lösbar, wenn: $\mathrm{rg}(A)=\mathrm{rg}(A|b))$\\
-Die Lösung des LGS $(A|b)$ hat $\dim{\ker A} = n-\mathrm{rg}(A)$ frei wählbare Parameter.\\
+Ein LGS $(A|b)$ ist genau dann lösbar, wenn: $\rg(A)=\rg(A|b)$\\
+Die Lösung des LGS $(A|b)$ hat $\dim(\ker A) = n-\rg(A)$ frei wählbare Parameter.\\
 \\
 Das LGS hat eine Lsg. wenn $\det A \not= 0$ \quad $\rightarrow \exists A^{-1}$ \\
 Das homogene LGS: $(A|0)$ hat stets die triviale Lösung $0$\\
@@ -168,8 +170,8 @@ Summen und Vielfache der Lösungen von $(A|0)$ sind wieder Lösungen.
 \subsubsection{Determinante von $A\in \mathbb K^{n\times n}$: $\det(A)=|A|$}
 
 \begin{itemize}\itemsep0pt
-\item $|A|=\sum\limits_{i=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \qquad Etwcklng. n. $j$-ter Spalte
-\item $|A|=\sum\limits_{j=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \qquad Entwicklung. n. $i$-ter Zeile
+\item $|A|=\sum\limits_{i=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \qquad Entwicklung n. $j$-ter Spalte
+\item $|A|=\sum\limits_{j=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \qquad Entwicklung n. $i$-ter Zeile
 \item $\det\begin{pmatrix}A&0\\C&D\end{pmatrix}=\det\begin{pmatrix}A&B\\0&D\end{pmatrix}=\det(A)\cdot\det(D)$
 \item $\begin{vmatrix}\lambda_1&&* \\ &\ddots& \\ 0&&\lambda_n \end{vmatrix} = \lambda_1\cdot \ldots\cdot \lambda_n = \begin{vmatrix} \lambda_1&&0  \\  &\ddots& \\  *&&\lambda_n \end{vmatrix}$
 \item $A=B \cdot C \quad \Rightarrow \quad |A|=|B| \cdot |C|$
@@ -185,45 +187,53 @@ Summen und Vielfache der Lösungen von $(A|0)$ sind wieder Lösungen.
 \item Zeile/Spalte mit $\lambda$ multiplizieren, $|A|$ um Faktor $\lambda$ größer
 \item Addition des $\lambda$-fachen der Zeile X zur Zeile Y ändert $|A|$ nicht 
 \end{itemize}
+\textbf{Positiv definite Matrix}\\
+$\det (a_{11}) > 0 \land \det \left(\begin{matrix} a_{11} & a_{12}\\ a_{21} & a_{22}\end{matrix}\right) > 0 \land \dotsc \land \det (A)>0$   \\ \\
 \textbf{Vereinfachung für Spezialfall $A\in \mathbb K^{2\times 2}$}\\
 $A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
 
+\subsubsection{Äquivalente Aussagen für $A\in \mathbb K^{n\times n}$}
+{\tiny (Wenn eine der Aussagen gilt, gelten alle anderen)} \\ \\
+\begin{tabular}{ll}	
+	1)  $A$ ist invertierbar & 2)  $\rg(A)=n$ \\
+	3)  $\mathrm{Kern}(A)={0}$ & 4) $\dim(S_A)=\dim(Z_A)=n$\\
+	5) $\det(A)\ne0$ & 6) Zeilen/Spalten von $A$ linear unabhängig
+\end{tabular}
+
 \subsection{Vektoren}
 Ein Vektor ist ein $n$-Tupel reeller oder komplexer Zahlen, also ein Element aus dem $\mathbb K^n$.
-\subsubsection{Skalarprodukt $\langle v,w \rangle$} 
-	\begin{enumerate}
+\subsubsection{Skalarprodukt $\langle v,w \rangle: V\times V \rightarrow \mathbb R$} 
+	\begin{enumerate}\itemsep0pt
 	\item Linear: $\langle u,v+w \rangle=\langle u,v \rangle + \langle u,w \rangle \land \langle u,\lambda v \rangle = \lambda \langle u, v \rangle$ 
 	\item Symmetrisch: $\langle v,w \rangle=\langle w,v \rangle$
 	\item Positiv definit: $\langle v,v \rangle\ge0$  \qquad $\langle v,v \rangle=0 \Leftrightarrow v=0$
 	\end{enumerate} 
 \textbf{Kanonisches Skalarprodukt} \\
-$\langle v,w \rangle=v^\top  w$\\ \\
-\textbf{Skalarprodukt} bzgl. sym., quadr. und positiv definiter Matrix $A\in \mathbb R^{n\times n}$\\
+$\langle v,w \rangle=v^\top  w=v_1w_1+\dots+v_nw_n$\\ \\
+\textbf{Skalarprodukt} bzgl. sym., quadr. und positiv definiter Matrix $A\in \mathbb K^{n\times n}$\\
 $\langle v,w \rangle_A=v^\top A w$\\
-Matrix A positiv definit, falls\\
-$\det (a_{11}) > 0 \land \det \left(\begin{matrix} a_{11} & a_{12}\\ a_{21} & a_{22}\end{matrix}\right) > 0 \land \dotsc \land \det (A)>0$   \\ \\
-\textbf{Orthogonale Zerlegung} eine Vektors v längs a:\\ 
-$v = v_a + v_{a^\perp} \text{ mit } v_a = \frac{\sprod{v}{a} }{\sprod{a}{a} }\cdot a \text{ und }	 v_{a^\perp} = v - v_a	$ \\ 
-\textbf{Winkel} \quad 	$\cos \phi = \frac{\sprod{a}{b}}{\norm{a} \norm{b}} $ \qquad
-$\phi = \arccos \enbrace{ \frac{\sprod{a}{b} }{\norm{a} \norm{b} } }$\\
-\textbf{Polynome} $\sprod{p(x)}{q(x)}=\int\limits_{0}^{1}p(x)q(x)\,dx$ \\
+\textbf{Skalarprodukt Polynome} $\sprod{p(x)}{q(x)}=\int\limits_{0}^{1}p(x)q(x)\,dx$ \\
 \textbf{Norm von Vektoren}
 $\norm{a}=\sqrt{\sprod{a}{a}} =\sqrt{a_1^2+a_2^2+\ldots +a_n^2}$\\
-\textbf{Orthogonalität} $\sprod{a}{b} = 0 \Leftrightarrow a\perp b$
+\textbf{Orthogonalität} $\sprod{a}{b} = 0 \Leftrightarrow a\perp b$ \\
+\textbf{Orthogonale Zerlegung} eine Vektors $v$ längs $a$:\\ 
+$v = v_a + v_{a^\perp} \text{ mit } v_a = \frac{\sprod{v}{a} }{\sprod{a}{a} }\cdot a \text{ und }	 v_{a^\perp} = v - v_a	$ \\ 
+\textbf{Winkel} \quad 	$\cos \phi = \frac{\sprod{a}{b}}{\norm{a} \norm{b}} $ \qquad
+$\phi = \arccos \enbrace{ \frac{\sprod{a}{b} }{\norm{a} \norm{b} } }$
 
 \subsubsection{Kreuzprodukt (Vektorprodukt)}
-$\vec a\times\vec b=\left( \begin{matrix} a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1\end{matrix}\right)$\qquad $\vec a,\vec b\ \in \mathbb R^3$\\
+$a\times b=\left( \begin{matrix} a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1\end{matrix}\right)$\qquad $a,b\ \in \mathbb R^3$\\
 \\
-$\vec a\times\vec b \perp \vec a,\vec b$ \qquad ($\vec a\times\vec b=0\ \Leftrightarrow\ \vec a,\vec b$\ linear abhängig)\\
-$\vec{a} \times \vec{b} = -\vec{b} \times \vec{a}$\\
-$\norm{\vec a\times\vec b}=\norm{\vec a}\cdot\norm{\vec b}\cdot \sin\left(\measuredangle (\vec a,\vec b)\right)\mathrel{\widehat{=}}$\ Fläche des Parallelogramms\\
-Graßmann-Identität: $\vec a\times(\vec b \times \vec c)\equiv\vec b\cdot(\vec a \cdot \vec c)-\vec c\cdot(\vec a \cdot \vec b)$\\
+$a\times b \perp a,b$ \qquad (falls $a\times b=0\ \Leftrightarrow\ a,b$\ linear abhängig)\\
+$a \times b = -b \times a$\\
+$\norm{a\times b}=\norm{a}\cdot\norm{b}\cdot \sin\left(\measuredangle (a,b)\right)\mathrel{\widehat{=}}$\ Fläche des Parallelogramms\\
+Graßmann-Identität: $a\times(b \times c)\equiv b\cdot(a \cdot c)-c\cdot(a \cdot b)$\\
 \\
 \textbf{Spatprodukt}\\
-$[a,b,c]:=\langle \vec a\times\vec b,\vec c\rangle=\det (a,b,c)\mathrel{\widehat{=}}$\ Volumen des Spates.\\
+$[a,b,c]:=\langle  a\times b, c\rangle=\det (a,b,c)\mathrel{\widehat{=}}$\ Volumen des Spates.\\
 $[a,b,c]>0\ \Leftrightarrow\ a,b,c$\ bilden Rechtssystem \\ $[a,b,c]=0\ \Leftrightarrow\ \{a,b,c\}$\ linear abhängig
 
-\subsection{Vektorräume}
+\subsection{Vektorräume (VR)}
 % --------------------------------------------------------------
 Eine nichtleere Menge V mit zwei Verknüpfungen $+$ und $\cdot$ heißt $K$-Vektorraum über dem Körper $\mathbb K$. \\
 \textbf{Bedingung $(u,v,w\in V \quad \lambda,\mu \in \mathbb{R})$}
@@ -238,14 +248,14 @@ Eine nichtleere Menge V mit zwei Verknüpfungen $+$ und $\cdot$ heißt $K$-Vekto
 \item $(\lambda \mu)v = \lambda(\mu v)$
 \item $1v=v$
 \end{enumerate}\itemsep0pt
-\subsubsection{Untervektorraum $U\subset V (u,v\in U \quad \lambda\in\mathbb{R})$}
+\subsubsection{Untervektorraum (UVR) $U\subset V (u,v\in U \quad \lambda\in\mathbb{R})$}
 \begin{enumerate}\itemsep0pt
 \item $U\ne \emptyset \qquad (0\in U)$
 \item $u+v\in U$
 \item $\lambda u \in U$
 \end{enumerate}
 
-\subsubsection{Basis (Jeder VR besitzt eine Basis!)} % (fold)
+\subsubsection{Basis (Jeder VR und jeder UVR besitzt eine Basis!)} % (fold)
 \label{sub:basis}
  Eine Teilmenge $B\subset V$ heißt Basis von $V$, wenn gilt:
 \begin{itemize}\itemsep0pt
@@ -254,7 +264,7 @@ Eine nichtleere Menge V mit zwei Verknüpfungen $+$ und $\cdot$ heißt $K$-Vekto
 \end{itemize}    
 
 \subsubsection{Dimension}
-$n=\dim(V)=\abs{B}$ Menge der Elemente in $B$.\\
+$n=\dim(V)=\abs{B} = $ Mächtigkeit von $B$\\
 Mehr als $n$ Vektoren aus $V$ sind stets linear abhängig. \\
 Für jeden UVR $U \subset V$ gilt: $\dim (U) \le \dim (V)$ 
 
@@ -268,12 +278,14 @@ Vektoren heißen linear unabhängig, wenn aus: \\
 $\lambda_1 v_1 + \dots + \lambda_n v_n = 0$ folgt, dass $\lambda_1 = \dots = \lambda_n = 0$
 
 \subsubsection{Orthogonalität}
- $B\subset V$ heißt \\
-\textbf{Orthogonalsystem}, wenn $\forall v,w\in B: v\perp w$\\
-\textbf{Orthogonalbasis}, wenn $B$ Orthogonalsystem und Basis von $V$\\
-\textbf{Orthonormalsystem}, wenn $B$ Orthogonalssystem u. $\forall v\in B: \norm{v}=1$\\
-\textbf{Orthonormalbasis(ONB)},  wenn $B$ Orthonormalsystem u. Basis von V ist\\ \\
-\textbf{Orthogonale Matrix $A$} wenn $A^\top A = E_n$
+$B\subset V$ heißt
+\begin{itemize}\itemsep0pt
+\item \textbf{Orthogonalsystem}, wenn $\forall v,w\in B: v\perp w$
+\item \textbf{Orthogonalbasis}, wenn $B$ Orthogonalsystem und Basis von $V$
+\item \textbf{Orthonormalsystem}, wenn $B$ Orthogonalssystem u. $\forall v\in B: \norm{v}=1$
+\item \textbf{Orthonormalbasis(ONB)},  wenn $B$ Orthonormalsystem u. Basis von V ist
+\end{itemize}
+\textbf{Matrix $A$ heißt orthogonal}, wenn $A^\top A = E_n$
 \begin{itemize}\itemsep0pt
 \item $A^{-1}=A^\top $
 \item $\det{A}=\pm1$
@@ -317,8 +329,8 @@ Allgemeine $l$-Norm $N_l$ eines Vektors $v=(v_1,\dots,v_n)\in \mathbb{R}^n$
 N_l(v)=\enbrace{\sum_{i=1}^{n}\abs{v_i}^l}^{\frac{1}{l}}
 \end{equation*}
 \begin{itemize}\itemsep0pt
-\item $N_1=\sum_{i=1}^{n}\abs{v_i}$ \qquad  \textbf{1-Norm} ($l^1$-Norm) \\
-\item $N_2=\sqrt{\sum_{i=1}^{n}\abs{v_i}}$ \qquad  \textbf{euklidische Norm} ($l^2$-Norm)
+\item $N_1(v)=\sum_{i=1}^{n}\abs{v_i}$ \qquad  \textbf{1-Norm} ($l^1$-Norm) \\
+\item $N_2(v)=\sqrt{\sum_{i=1}^{n}v_i^2}$ \qquad  \textbf{euklidische Norm} ($l^2$-Norm)
 \item $N_\infty(v)=\max\{\abs{v_i}\}$ \qquad \textbf{Maximumsnorm} ($l^\infty$-Norm)
 \end{itemize}
 \includegraphics[width=\linewidth]{./img/norms.png} \\
@@ -327,8 +339,8 @@ Vektoren aus $\mathbb{R}^n$ mit der Länge 1 bzgl. der Normen $N_1, N_2$ und $N_
 \begin{equation*} 
 N:\mathbb{R}^{m\times n}\rightarrow\mathbb{R} \text{ mit } N(A)=\sqrt{\sum_{i=1}^{m}\sum_{j=1}^{n}a_{ij}^2}
 \end{equation*}
-\subsubsection{Induzierte Matrixnorm}
-Eigenschaften
+\subsubsection{Induzierte Matrixnorm auf $\mathbb R^{n\times n}$}
+Eigenschaften:
 \begin{itemize}\itemsep0pt
 \item verträglich mit Vektornorm: $\norm{Av}_V=\norm{A}\norm{v}_V$
 \item submultiplikativ: $\norm{AB}\le\norm{A}\norm{B}$
@@ -338,18 +350,18 @@ Eigenschaften
 \end{itemize}
 \textbf{Definition}: Jede Vektornorm $\norm{\bullet}_V$ des $\mathbb{R}^n$ definiert eine Matrixnorm $\norm{\bullet}$ auf $\mathbb{R}^{n\times n}$
 \begin{equation*}
-\norm{A}= \max_{\norm{v}_V=1}\norm{Av}_V
+\norm{A}= \sup_{\norm{v}_V=1}\norm{Av}_V
 \end{equation*}
-\textbf{Wichtige induzierte Matrixnormen}
+\textbf{Wichtige induzierte Matrixnormen} auf $A=(a_{ij})\in \mathbb R^{n\times n}$
 \begin{itemize}\itemsep0pt
 \item Die \textbf{Spaltensummennorm} induziert durch die $l^1$-Norm
 \begin{equation*}
-\norm{A}_1 = \max_{j=1, \ldots ,n} \sum_{i=1}^m \abs{a_{ij}}
+	\norm{A}_1 = \max_{i=1, \ldots ,n} \{\abs{a_{1i}}+\dots +\abs{a_{ni}} \}
 \end{equation*}
 ist die betragsmäßig maximale Spaltensumme.
 \item Die \textbf{Zeilensummennorm} induziert durch die $l^\infty$-Norm
 \begin{equation*}
-\norm{A}_\infty = \max_{i=1, \ldots ,m}{\sum_{j=1}^n \abs{a_{ij}}}
+\norm{A}_\infty = \max_{i=1, \ldots ,n} \{\abs{a_{i1}}+\dots +\abs{a_{in}} \}
 \end{equation*}
 ist die betragsmäßig maximale Zeilensumme.
 \item Die \textbf{Spektralnorm} induziert durch die $l^2$-Norm
@@ -360,18 +372,19 @@ ist die Wurzel aus dem größten Eigenwert von $A^\top A$.
 \end{itemize}
 
 \subsection{Lineare Abbildungen}
-Abbildung $f:V\rightarrow W$ ist linear wenn
+Abbildung $f:V\rightarrow W$ ist linear, wenn
 \begin{enumerate}\itemsep0pt
 \item $f(0)=0$
 \item $f(a+b)=f(a)+f(b)$
 \item $f(\lambda a)=\lambda f(a)$
-\end{enumerate}\itemsep0pt
-\textbf{Injektiv} wenn aus $f(x_1)=f(x_2) \Rightarrow x_1=x_2$\\
+\end{enumerate}
+$\Rightarrow$ Abbildung als Matrix darstellbar\\ \\
+\textbf{Injektiv}, wenn aus $f(x_1)=f(x_2) \Rightarrow x_1=x_2$\\
 \textbf{Surjektiv}: $\forall y\in W \ \exists x\in V:f(x)=y$\\ \quad (Alle Werte aus $W$ werden angenommen.)\\
 \textbf{Bijektiv}(Eineindeutig): $f$ ist injektiv und surjektiv $\Rightarrow$ $f$ umkehrbar.
 \subsubsection{Koordinatenvektor bezüglich einer Basis $B$}
 $B=(b_1,\dots,b_n)$ geordnete Basis des Vektorraums $V$, so kann jeder Vektor $v\in V$ als Linearkombination bzgl. $B$ dargestellt werden: \\
-$v=\lambda_1b_1+\dots+\lambda_nb_n$, wobei $\lambda_1,\dots,\lambda_n\in \mathbb{R}$\\
+$v=\lambda_1b_1+\dots+\lambda_nb_n$, wobei $\lambda_1,\dots,\lambda_n\in \mathbb{R}$ ($\Rightarrow$ Gauß)\\
 $\Rightarrow v_B=(\lambda_1, \dots ,\lambda_n)^\top$ ist der Koordinatenvektor bzgl. Basis $B$
 \subsubsection{Darstellungsmatrix}
 Lineare Abbildung $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ \\
@@ -386,7 +399,7 @@ $\Rightarrow A=M(f)_C^B = \begin{pmatrix}
 f(b_1)_C & f(b_2)_C & \cdots & f(b_n)_C\\
 \vert & \vert &  & \vert
 \end{pmatrix}$ \\
-ist die Darstellungsmatrix von $f$ bzgl. $B$ und $C$ \\
+ist die Darstellungsmatrix von $f$ bzgl. $B$ und $C$. \\
 ''In der j-ten Spalte der Abbildungsmatrix stehen die Koordinaten des Bildes $f(b_j)$ bzgl. der Basis $C=(c_1,\dots,c_m)$'' \\ \\
 \textbf{Eigenschaften von $f$ mit Hilfe von $A$}
 \begin{itemize}\itemsep0pt
@@ -397,15 +410,14 @@ ist die Darstellungsmatrix von $f$ bzgl. $B$ und $C$ \\
 \subsubsection{Transformationsmatrix}
 Gegeben: Basen $\mathcal B=(v_1, \dots,v_n)$ und $\mathcal B'=(v'_1,\dots,v'_n) \in V$ \\
 Darstellung der Elemente aus $\mathcal B'$ in der Basis $\mathcal B$:\\
-$v'_j = a_{1j}v_1+a_{2j}v_2+\dots+a_{nj}v_n$ mit $a_{ij}$ als Koeffizienten des Vektors $v'_j$ bzgl. der Basis $B$\\
+$v'_j = a_{1j}v_1+a_{2j}v_2+\dots+a_{nj}v_n$ mit $a_{ij}$ als Koeffizienten des Vektors $v'_j$ bzgl. der Basis $\mathcal B$\\
 $\Rightarrow$ Transformationsmatix $T_{\mathcal B'}^{\mathcal B}=(a_{ij})$\\ \\
 \textbf{Regeln und Berechnung} ($B$ ist Matrix der Basis $\mathcal B$)
 \begin{itemize}\itemsep0pt
+\item $T_{\mathcal B'}^{\mathcal B}=B^{-1}B'$
+\item Falls $\mathcal B$ Standardbasis $\Rightarrow$ Matrix $B=E$ und $T_{\mathcal B'}^{E}=B'$
 \item $\enbrace{T_{\mathcal B'}^{\mathcal B}}^{-1}=T_{\mathcal B}^{\mathcal B'}$ \quad \qquad $B'=BT_{\mathcal B'}^{\mathcal B}$\\
-\item Falls $\mathcal B$ Standardbasis $\Rightarrow$ Matrix $B=E$ und $T_{\mathcal B'}^{E_n}=B'$
-\item Vektor $v_E$ bzgl. Basis $E_n$ darstellen bzgl. Basis $\mathcal B'$: $v_{\mathcal B'}=T_{E}^{\mathcal B'}v_E$
-\item Falls $V = \mathbb{R}^n \Rightarrow T_{\mathcal B'}^{\mathcal B}=B^{-1}B'$
-\
+\item Vektor $v$ bzgl. Basis $E_n$ soll bzgl. Basis $\mathcal B'$ dargestellt werden: \\$v_{\mathcal B'}=T_{E}^{\mathcal B'}v$
 \item Abbildungsmatrix bzgl. Basis $\mathcal{B}$ \\
 $M(f)_{\mathcal{B}}^{\mathcal{B}}=T_{E}^{\mathcal{B}} \cdot M(f)_E^E \cdot T_{\mathcal{B}}^E$
 \end{itemize}\itemsep0pt
@@ -435,9 +447,9 @@ und $D$ eine Diagonalmatrix ist.
 \item Eine symmetrische Matrix hat nur reelle Eigenwerte und ist diagonalisierbar.
 \item Die Determinante einer Matrix ist gleich dem Produkt der Eigenwerte: $\det(A)=\lambda_1\dots\lambda_n$
 \end{itemize}
-\subsubsection{Rezept: Diagonalisierten}
+\subsubsection{Rezept: Diagonalisieren}
 Gegeben: $A\in \mathbb{R}^{n\times n}$
-\begin{enumerate}
+\begin{enumerate}\itemsep0pt
 \item Bestimme das charakteristische Polynom von $A$
 \begin{equation*}
 p_A(\lambda)=\det(A-\lambda E_n)
@@ -448,18 +460,18 @@ p_A(\lambda)=(\lambda_1-\lambda)^{\nu_1}\dots(\lambda_r-\lambda)^{\nu_r}
 \end{equation*}
 Es gilt $\nu_1 + \dots + \nu_r=n$ \\
 $\lambda_1,\dots, \lambda_r$ sind die Eigenwerte mit algebraischer Vielfachheit $\text{alg}(\lambda_i)=\nu_i$\\
-Ist $p_A$ nicht vollständig in Linearfaktoren zerlegbar $\Rightarrow$ A nicht diag.bar!
+Ist $p_A$ nicht vollständig in Linearfaktoren zerlegbar $\Rightarrow$ A nicht diagonalisierbar!
 \item Bestimme zu jeden Eigenwert $\lambda_i$ den Eigenraum $V_i$
 \begin{equation*}
 V_i=\ker(A-\lambda_iE_n)=\text{span}(B_i)
 \end{equation*}
 Die Vektoren der Basis $B_i$ sind die Eigenvektoren von $\lambda_i$.\\ \\
-\textbf{Einfacher:} Lösung für $v_i$ für das LGS
+\textbf{Einfacher:} Der Eigenvektor $v_i$ ist Lösung des homogenen LGS
 \begin{equation*}
 (A-\lambda_i E_n)v_i=0
 \end{equation*}
 $\dim(V_i)=\text{geo}(\lambda_i)$  geometr. Vielfachheit des Eigenwerts $\lambda_i$. \\
-Gilt geo$(\lambda_i)\ne\text{alg}(\lambda_i)$ für ein $i$, ist A nicht diag.bar!
+Gilt geo$(\lambda_i)\ne\text{alg}(\lambda_i)$ für ein $i$, ist A nicht diagonalisierbar!
 \item $B=(v_1 \ \dots v_n)$ setzt sich aus den Eigenvektoren zusammen. \\
 $D=\diag(\lambda_1,\dots,\lambda_n)$ ist die Diagonalmatrix der Eigenwerte.
 \begin{equation*}
@@ -481,7 +493,7 @@ Gegeben: $A\in \mathbb{R}^{n\times n}$ \\
 \textbf{Teil I}
 \begin{enumerate}\itemsep0pt
 \item $A_1=A$
-\item Bestimme einen Eigenvektor $v$ zum Eigenwert $\lambda_1$ von $A_1$
+\item Bestimme einen Eigenvektor $v$ mit Norm $\norm v=1$ zum Eigenwert $\lambda_1$ von $A_1$
 \item Ergänze $v$ zu einer ONB des $\mathbb{R}^n \Rightarrow$ orthogonale Matrix $B_1=\begin{pmatrix}
 v & v_2 & \dots & v_n
 \end{pmatrix}$
@@ -533,8 +545,8 @@ mit $U\in \mathbb{R}^{m\times m}$, $S\in \mathbb{R}^{m\times n}$ und $V\in \math
 $U$ und $V$ sind orthogonal, $S$ ist eine Diagonalmatrix.
 \subsubsection{Rezept: Singulärwertzerlegung}
 Gegeben: $A\in \mathbb{R}^{m\times n}$
-\begin{enumerate}
-\item Bestimme $\lambda_j$ und Eigenvektoren $v_j$ der Matrix $A^\top A\in \mathbb{R}^{n\times n}$ und ordne sie \\ $\lambda_1\ge\lambda_2\ge \dots \ge \lambda_r>\lambda_{r+1}=\dots=\lambda_n=0$ mit $r\le n$
+\begin{enumerate}\itemsep0pt
+\item Bestimme alle Eigenwerte $\lambda_j$ und Eigenvektoren $v_j$ der Matrix $A^\top A\in \mathbb{R}^{n\times n}$ und ordne sie \\ $\lambda_1\ge\lambda_2\ge \dots \ge \lambda_r>\lambda_{r+1}=\dots=\lambda_n=0$ mit $r\le n$
 \item Bestimme eine ONB des $\mathbb{R}^n$ aus den Eigenvektoren $v_j$ und erhalte $V=\begin{pmatrix} 
 v_1 &\dots & v_n
 \end{pmatrix} \in \mathbb{R}^{n\times n}$
@@ -581,14 +593,10 @@ AB=BA \Rightarrow e^{A+B}=e^Ae^B
 \textbf{Diagonalmatrix $A\in \mathbb{R}^{n\times n}$}
 \begin{equation*}
 e^{tA}=
-\exp{\begin{pmatrix}
-a_1t & \ldots & 0 \\
-\vdots & \ddots & \vdots \\
-0 & \ldots & a_nt \end{pmatrix}}=
 \begin{pmatrix}
 e^{a_1t} & \ldots & 0 \\ 
 \vdots & \ddots & \vdots \\ 
-0 & \ldots & e^{a_nt} \end{pmatrix}
+0 & \ldots & e^{a_nt} \end{pmatrix} = \diag\enbrace{e^{a_1t},\dots,e^{a_nt}}
 \end{equation*}
 \textbf{Diagonalisierbare Matrix $A\in \mathbb{R}^{n\times n}$} \\
 mit den Eigenwerten $\lambda_1,\dots,\lambda_n$ und den Eigenvektoren $v_1,\dots,v_n$ mit $V=\begin{pmatrix}
@@ -596,33 +604,33 @@ v_1 & \dots & v_n
 \end{pmatrix}$: $A=VDV^{-1}$
 \begin{equation*}
 e^{tA}=Ve^{tD}V^{-1}=
-V\begin{pmatrix} e^{\lambda_1t} & \ldots & 0 \\ 
-\vdots & \ddots & \vdots \\ 
-0 & \ldots & e^{\lambda_nt} \end{pmatrix}V^{-1}
+V\diag\enbrace{e^{\lambda_1t},\dots,e^{\lambda_nt}}V^{-1}
 \end{equation*}
 \textbf{Jordanblock}
 $A=\begin{pmatrix}
-\lambda_1 & 1\\
-0 & \lambda_2
-\end{pmatrix}
-\qquad A=
+a_1 & 1\\
+0 & a_2
+\end{pmatrix}$
+\quad oder \quad $A=
 \begin{pmatrix}
-\lambda_1 & 1 & 0\\
-0 & \lambda_2 & 1\\
-0& 0& \lambda_3
+a_1 & 1 & 0\\
+0 & a_2 & 1\\
+0& 0& a_3
 \end{pmatrix}$\\
-$A=D+N=\begin{pmatrix}
-\lambda_1 & 0\\
-0 & \lambda_2
+Aufteilen von $A$ in $A=D+N=\begin{pmatrix}
+a_1 & 0\\
+0 & a_2
 \end{pmatrix}+\begin{pmatrix}
 0 & 1\\
 0 & 0
-\end{pmatrix}$\\
-Die Potenzreihe von $e^{N}$ ist auf endliche Summanden begrenzt.
+\end{pmatrix}$
 \begin{equation*}
-\resizebox{1\hsize}{!}{$
-e^{At}=e^{Dt}e^{Nt}=\diag\enbrace{e^{\lambda_1t},\dots,e^{\lambda_nt}}\enbrace{E_n+tN+t^2\frac{N^2}{2}+\dots}$}
-\end{equation*}
+\begin{split}
+\Rightarrow e^{At}&=e^{Dt+Nt}=e^{Dt}e^{Nt}\\
+&=\diag\enbrace{e^{a_1t},\dots,e^{a_nt}}\enbrace{E_n+tN+t^2\frac{N^2}{2}+\dots}
+\end{split}
+\end{equation*}\\
+Die Potenzreihe von $e^{Nt}$ ist auf endliche Summanden begrenzt.
 \end{multicols*}
 % Ende der Spalten
 
