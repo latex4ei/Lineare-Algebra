@@ -17,7 +17,8 @@
 \usepackage{multicol}			% ermöglicht Seitenspalten  
 \usepackage{wasysym}			% Blitz
 \usepackage{graphicx}
-      
+\usepackage[colorlinks=true, urlcolor=black]{hyperref}
+  
 % Seitenlayout und Ränder:
 \usepackage{geometry}
 \geometry{a4paper,landscape, left=6mm,right=6mm, top=0mm, bottom=3mm,includeheadfoot} 
@@ -27,7 +28,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-   \fancyfoot[C]{\textbf{Lineare Algebra} von Lukas Kompatscher (lukas.kompatscher@tum.de)}
+   \fancyfoot[C]{\textbf{Lineare Algebra} von Lukas Kompatscher (\href{mailto:lukas.kompatscher@tum.de}{lukas.kompatscher@tum.de})}
    \renewcommand{\headrulewidth}{0.0pt} %obere Linie ausblenden
    \renewcommand{\footrulewidth}{0.1pt} %untere Linie
 
@@ -244,7 +245,7 @@ Eine nichtleere Menge V mit zwei Verknüpfungen $+$ und $\cdot$ heißt $K$-Vekto
 \item $v'\in V: v+v'=0$
 \item $v+w=w+v$
 \item $\lambda(v+w)=\lambda v + \lambda w$
-\item $(\lambda + \mu)v=\lambda(\mu v)$
+\item $(\lambda + \mu)v=\lambda v +\mu v $
 \item $(\lambda \mu)v = \lambda(\mu v)$
 \item $1v=v$
 \end{enumerate}\itemsep0pt
