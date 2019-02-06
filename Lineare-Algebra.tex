@@ -318,15 +318,15 @@ $B\subset V$ heißt
 \textbf{Orthonormalisierungsvefahren einer Basis $\{v_1,\ldots,v_n\}$ nach Gram-Schmidt}
 \begin{enumerate}\itemsep0pt
 \item $b_1=\frac{v_1}{\|v_1\|}$ \qquad (Vektor mit vielen 0en oder 1en)
-\item $b_{2}= \frac{c_2}{\norm{c_2}}$\ \ mit \ \ $c_2=v_2-\sprod{v_2}{b_1}\cdot b_1$
-\item $b_{3}= \frac{c_3}{\norm{c_3}}$\ \ mit \ \ $c_3=v_3-\sprod{v_3}{b_1}\cdot b_1-\sprod{v_3}{b_2}\cdot b_2$
+\item $b_{2}= \frac{c_2}{\norm{c_2}}$\ \ mit \ \ $c_2=v_2-\frac{\sprod{v_2}{v_1}}{\sprod{v_1}{v_1}}\cdot v_1$
+\item $b_{3}= \frac{c_3}{\norm{c_3}}$\ \ mit \ \ $c_3=v_3-\frac{\sprod{v_3}{v_1}}{\sprod{v_1}{v_1}} \cdot v_1-\frac{\sprod{v_3}{c_2}}{\sprod{c_2}{c_2}}\cdot c_2$
 \end{enumerate}
 \textbf{Orthogonale Projektion auf UVR} \\
 Gegeben: Vektorraum $V \in \mathbb{R}^n$, $v\in V$, Untervektorraum $U\subset V$
 \begin{enumerate}\itemsep0pt
 \item Basis von $U$ bestimmen
-\item Normiere Basis $\{b_1,b_2,b_3,\ldots\}$ von $U$ 
-\item $v_U = \sprod{v}{b_1}b_1 + \sprod{v}{b_2}b_2 +\dots$ 
+\item Orthogonalisiere Basis $\{u_1,u_2,u_3,\ldots\}$ von $U$
+\item $v_U = \frac{\sprod{v}{u_1}}{\sprod{u_1}{u_1}}u_1 + \frac{\sprod{v}{u_2}}{\sprod{u_2}{u_2}}u_2 +\dots$
 \item $v_{U^\perp}=v-v_U$
 \item Abstand von $v$ zu $U$ = $\norm{v_{U^\perp}}$
 \end{enumerate}
