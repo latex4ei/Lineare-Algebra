@@ -188,8 +188,6 @@ Summen und Vielfache der Lösungen von $(A|0)$ sind wieder Lösungen.
 \item Zeile/Spalte mit $\lambda$ multiplizieren, $|A|$ um Faktor $\lambda$ größer
 \item Addition des $\lambda$-fachen der Zeile X zur Zeile Y ändert $|A|$ nicht 
 \end{itemize}
-\textbf{Positiv definite Matrix}\\
-$\det (a_{11}) > 0 \land \det \left(\begin{matrix} a_{11} & a_{12}\\ a_{21} & a_{22}\end{matrix}\right) > 0 \land \dotsc \land \det (A)>0$   \\ \\
 \textbf{Vereinfachung für Spezialfall $A\in \mathbb K^{2\times 2}$}\\
 $A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
 
@@ -214,8 +212,6 @@ $\langle v,w \rangle=v^\top  w=v_1w_1+\dots+v_nw_n$\\ \\
 \textbf{Skalarprodukt} bzgl. sym., quadr. und positiv definiter Matrix $A\in \mathbb K^{n\times n}$\\
 $\langle v,w \rangle_A=v^\top A w$\\
 \textbf{Skalarprodukt Polynome} $\sprod{p(x)}{q(x)}=\int\limits_{0}^{1}p(x)q(x)\,dx$ \\
-\textbf{Norm von Vektoren}
-$\norm{a}=\sqrt{\sprod{a}{a}} =\sqrt{a_1^2+a_2^2+\ldots +a_n^2}$\\
 \textbf{Orthogonalität} $\sprod{a}{b} = 0 \Leftrightarrow a\perp b$ \\
 \textbf{Orthogonale Zerlegung} eine Vektors $v$ längs $a$:\\ 
 $v = v_a + v_{a^\perp} \text{ mit } v_a = \frac{\sprod{v}{a} }{\sprod{a}{a} }\cdot a \text{ und }	 v_{a^\perp} = v - v_a	$ \\ 
@@ -318,59 +314,13 @@ Alternative Methode
 \end{enumerate}
 
 \subsection{Norm}
-Eine Abbildung $N: V\rightarrow \mathbb{R}$ eines reellen oder komplexen Vektorraums $V$ heißt Norm auf $V$, falls $\forall v,w\in V$ und $\forall \lambda\in\mathbb{R}$ gilt:
+\textbf{Norm von Vektoren}
+$\norm{a}=\sqrt{\sprod{a}{a}} =\sqrt{a_1^2+a_2^2+\ldots +a_n^2}$\\
+$\forall v, w \in \mathbb{R}^n$:
 \begin{enumerate}\itemsep0pt
-\item $N(v)\ge0$ \quad und \quad $N(v)=0 \Leftrightarrow v=0$
 \item $N(\lambda v)=\abs{\lambda}N(v)$
-\item $N(v+w)\le N(v) + N(w)$ \quad (Dreiecksungleichung)
+\item $\norm{v+w}\le \norm{v} + \norm{w}$
 \end{enumerate}
-\subsubsection{Vektornorm}
-Allgemeine $l$-Norm $N_l$ eines Vektors $v=(v_1,\dots,v_n)\in \mathbb{R}^n$
-\begin{equation*}
-N_l(v)=\enbrace{\sum_{i=1}^{n}\abs{v_i}^l}^{\frac{1}{l}}
-\end{equation*}
-\begin{itemize}\itemsep0pt
-\item $N_1(v)=\sum_{i=1}^{n}\abs{v_i}$ \qquad  \textbf{1-Norm} ($l^1$-Norm) \\
-\item $N_2(v)=\sqrt{\sum_{i=1}^{n}v_i^2}$ \qquad  \textbf{euklidische Norm} ($l^2$-Norm)
-\item $N_\infty(v)=\max\{\abs{v_i}\}$ \qquad \textbf{Maximumsnorm} ($l^\infty$-Norm)
-\end{itemize}
-\includegraphics[width=\linewidth]{./img/norms.png} \\
-Vektoren aus $\mathbb{R}^n$ mit der Länge 1 bzgl. der Normen $N_1, N_2$ und $N_\infty$\\
-\textbf{Frobeniusnorm} der Matrix $V=\mathbb{R}^{m\times n}$
-\begin{equation*} 
-N:\mathbb{R}^{m\times n}\rightarrow\mathbb{R} \text{ mit } N(A)=\sqrt{\sum_{i=1}^{m}\sum_{j=1}^{n}a_{ij}^2}
-\end{equation*}
-\subsubsection{Induzierte Matrixnorm auf $\mathbb R^{n\times n}$}
-Eigenschaften:
-\begin{itemize}\itemsep0pt
-\item verträglich mit Vektornorm: $\norm{Av}_V=\norm{A}\norm{v}_V$
-\item submultiplikativ: $\norm{AB}\le\norm{A}\norm{B}$
-\item $\norm{E_n}=1$
-\item $\abs{\lambda}\le\norm{A}$ für jeden Eigenwert $\lambda$ von $A$
-\item $\norm{A}=0 \Leftrightarrow A=0$
-\end{itemize}
-\textbf{Definition}: Jede Vektornorm $\norm{\bullet}_V$ des $\mathbb{R}^n$ definiert eine Matrixnorm $\norm{\bullet}$ auf $\mathbb{R}^{n\times n}$
-\begin{equation*}
-\norm{A}= \sup_{\norm{v}_V=1}\norm{Av}_V
-\end{equation*}
-\textbf{Wichtige induzierte Matrixnormen} auf $A=(a_{ij})\in \mathbb R^{n\times n}$
-\begin{itemize}\itemsep0pt
-\item Die \textbf{Spaltensummennorm} induziert durch die $l^1$-Norm
-\begin{equation*}
-	\norm{A}_1 = \max_{i=1, \ldots ,n} \{\abs{a_{1i}}+\dots +\abs{a_{ni}} \}
-\end{equation*}
-ist die betragsmäßig maximale Spaltensumme.
-\item Die \textbf{Zeilensummennorm} induziert durch die $l^\infty$-Norm
-\begin{equation*}
-\norm{A}_\infty = \max_{i=1, \ldots ,n} \{\abs{a_{i1}}+\dots +\abs{a_{in}} \}
-\end{equation*}
-ist die betragsmäßig maximale Zeilensumme.
-\item Die \textbf{Spektralnorm} induziert durch die $l^2$-Norm
-\begin{equation*}
-\norm{A}_2 = \max\{\sqrt{\lambda}|\lambda\text{ ist Eigenwert von }A^\top A\}
-\end{equation*}
-ist die Wurzel aus dem größten Eigenwert von $A^\top A$.
-\end{itemize}
 
 \subsection{Lineare Abbildungen}
 Abbildung $f:V\rightarrow W$ ist linear, wenn
@@ -479,64 +429,21 @@ $D=\diag(\lambda_1,\dots,\lambda_n)$ ist die Diagonalmatrix der Eigenwerte.
 D=B^{-1}AB \ \Leftrightarrow \ A=BDB^{-1}
 \end{equation*}
 \end{enumerate}
-\subsection{Schurzerlegung}
-Zu jeder quadratische Matrix $A\in \mathbb{R}^{n\times n}$ mit einem in Linearfaktoren zerfallendem charakteristischem Polynom $p_A(\lambda)$ gibt es eine orthogonale Matrix $Q\in \mathbb{R}^{n\times n}$, $Q^{-1}=Q^\top$, mit
-\begin{equation*}
-Q^\top AQ=R=\begin{pmatrix}
-\lambda_1 & \dots & \ast \\
- & \ddots & \vdots \\
-0 &  & \lambda_n \\
-\end{pmatrix}
-\end{equation*}
-$R$ ist eine obere Dreiecksmatrix.
-\subsubsection{Rezept: Schurzerlegung}
-Gegeben: $A\in \mathbb{R}^{n\times n}$ \\
-\textbf{Teil I}
-\begin{enumerate}\itemsep0pt
-\item $A_1=A$
-\item Bestimme einen Eigenvektor $v$ mit Norm $\norm v=1$ zum Eigenwert $\lambda_1$ von $A_1$
-\item Ergänze $v$ zu einer ONB des $\mathbb{R}^n \Rightarrow$ orthogonale Matrix $B_1=\begin{pmatrix}
-v & v_2 & \dots & v_n
-\end{pmatrix}$
-\item Berechne
-\begin{equation*}
-B_1^\top A_1 B_1=\begin{pmatrix}
-\lambda_1 & \ast\\
-0 & A_2
-\end{pmatrix} 
-\text{ mit } A_2\in \mathbb{R}^{(n-1)\times(n-1)}
-\end{equation*}
-\item Setze $Q_1=B_1$
-\end{enumerate}
-%Zweiter Teil
-\textbf{Teil II} (wiederhole $(n-1)$ mal)
-\begin{enumerate}\itemsep0pt
-\item $A_2$ ist gegeben
-\item Bestimme einen Eigenvektor $v$ zum Eigenwert $\lambda_2$ von $A_2$
-\item Ergänze $v$ zu einer ONB des $\mathbb{R}^{n-1} \Rightarrow$ orthogonale Matrix $B_2=\begin{pmatrix}
-v & v_2 & \dots & v_{n-1}
-\end{pmatrix}$
-\item Berechne
-\begin{equation*}
-B_2^\top A_2 B_2=\begin{pmatrix}
-\lambda_2 & \ast\\
-0 & A_3
-\end{pmatrix} 
-\text{ mit } A_3\in \mathbb{R}^{(n-2)(n-2)}
-\end{equation*}
-\item Setze $Q_2=Q_1\begin{pmatrix}
-1 & 0\\
-0 & B_2
-\end{pmatrix}$
-\end{enumerate}
-Setze $Q=Q_{n-1}$. Es gilt $Q^{-1}=Q^\top$ und die Schurzerlegung von $A$ lautet
-\begin{equation*}
-Q^\top AQ=R=\begin{pmatrix}
-\lambda_1 & \dots & \ast \\
- & \ddots & \vdots \\
-0 &  & \lambda_n \\
-\end{pmatrix}
-\end{equation*}
+\subsection{QR-Zerlegung}
+$A = QR$, wobei $Q$ orthogonal und R oben dreieckig.\\
+\textbf{Vorgehen}
+\begin{itemize}\itemsep0pt
+ \item $Q$ berechnen durch Gram-Schmidt mit den Spalten von $A$, beginnend bei der ersten
+ \item Die Koeffizienten von $R$ ergeben sich durch Umstellen der jeweiligen Gram-Schmidt Gleichungen auf die Spalten von $A$
+ \item Alternativ gilt: $R = Q^TA$
+\end{itemize}
+
+\subsection{Kleinstes-Quadrate-Problem}
+Für $Ax = b$ lautet die
+\textbf{Normalengleichung}
+$A^TAx = A^Tb$\\
+$\Rightarrow$ optimale Lösung mit minimalem quadratischen Fehler (existiert immer).
+
 \subsection{Singulärwertzerlegung}
 Bei der Singulärwertzerlegung wird eine beliebige Matrix $A\in \mathbb{R}^{m\times n}$ als Produkt dreier Matrizen $U$, $S$ und $V$ geschrieben
 \begin{equation*}
