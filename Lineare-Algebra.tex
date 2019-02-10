@@ -157,6 +157,24 @@ Dimensionsformel: $\rg(A) + \mathrm{dim}(\ker(A)) = n$ \\
 Spaltenrang: Anzahl der N0-Spalten\\
 Spaltenraum $S_A$: Erzeugnis der Spalten, $\text{Basis}(S_A) = \{\text{ N0-Spalten }\}$ \\
 Bild = Spaltenraum: Erzeugnis der Spalten 
+\subsubsection{Matrixpotenzen}
+Gegeben: $A \in\mathbb{R}^{mxn}, x \in\mathbb{R}^n$.\\
+Gesucht: Lösung von $A^n$.\\
+\begin{itemize}
+	\item Bestimme Eigenwerte $\lambda$ und Eigenvektoren $v$ von $A$.
+	\item Bestimme $\alpha_1, ..., \alpha_k$ mit $x = \alpha_1v_1 + ... + \alpha_kv_k$.
+	\item $A^nx = \alpha_1\lambda_1^nv_1+ ... + \alpha_k\lambda_k^nv_k$.
+\end{itemize}
+Gegeben: $A \in\mathbb{R}^{nxn}, A$ diagonalisierbar.\\
+Gesucht: $A^n$.
+\begin{itemize}
+	\item $A^n = SD^nS^{-1}$ mit $D^n = \begin{pmatrix}
+	\lambda_1^n & \ldots & 0 \\
+	\vdots & \ddots & \vdots\\
+	0 & \ldots & \lambda_k^n \\
+	\end{pmatrix}$.
+\end{itemize}
+
 \subsubsection{Lineares Gleichungssystem LGS}
 Das LGS $Ax=b$ kurz $(A|b)$ mit $A\in \mathbb K^{m\times n}$, $x\in \mathbb K^n$, $b\in \mathbb K^m$ hat $m$ Gleichungen und $n$ Unbekannte.\\
 \\
@@ -487,58 +505,23 @@ orthogonal.
 \end{enumerate}
 
 \subsection{Lineare Differentialgleichungen}
-Gegeben: $\dot x=Ax$ mit $x=x(t) \in \mathbb{R}^n$ und $A\in \mathbb{R}^{n\times n}$  \\
-$A$ ist diagonal, diagonalisierbar oder ein Jordanblock. \\
-\textbf{Allgemeine Lösung}
-\begin{equation*}
-x(t)=e^{tA}x_0 \text{ mit } x_0=x(0)
-\end{equation*}
-\subsubsection{Exponentialfunktion von Matrizen}
-\begin{eqnarray*}
-e^A = \sum_{k=0}^\infty{A^k \over k!}=I+A+{A^2 \over 2!}+{A^3\over 3!}+\dots\\
-AB=BA \Rightarrow e^{A+B}=e^Ae^B
-\end{eqnarray*}
-\textbf{Diagonalmatrix $A\in \mathbb{R}^{n\times n}$}
-\begin{equation*}
-e^{tA}=
-\begin{pmatrix}
-e^{a_1t} & \ldots & 0 \\ 
-\vdots & \ddots & \vdots \\ 
-0 & \ldots & e^{a_nt} \end{pmatrix} = \diag\enbrace{e^{a_1t},\dots,e^{a_nt}}
-\end{equation*}
-\textbf{Diagonalisierbare Matrix $A\in \mathbb{R}^{n\times n}$} \\
-mit den Eigenwerten $\lambda_1,\dots,\lambda_n$ und den Eigenvektoren $v_1,\dots,v_n$ mit $V=\begin{pmatrix}
-v_1 & \dots & v_n
-\end{pmatrix}$: $A=VDV^{-1}$
-\begin{equation*}
-e^{tA}=Ve^{tD}V^{-1}=
-V\diag\enbrace{e^{\lambda_1t},\dots,e^{\lambda_nt}}V^{-1}
-\end{equation*}
-\textbf{Jordanblock}
-$A=\begin{pmatrix}
-a_1 & 1\\
-0 & a_2
-\end{pmatrix}$
-\quad oder \quad $A=
-\begin{pmatrix}
-a_1 & 1 & 0\\
-0 & a_2 & 1\\
-0& 0& a_3
-\end{pmatrix}$\\
-Aufteilen von $A$ in $A=D+N=\begin{pmatrix}
-a_1 & 0\\
-0 & a_2
-\end{pmatrix}+\begin{pmatrix}
-0 & 1\\
-0 & 0
-\end{pmatrix}$
-\begin{equation*}
-\begin{split}
-\Rightarrow e^{At}&=e^{Dt+Nt}=e^{Dt}e^{Nt}\\
-&=\diag\enbrace{e^{a_1t},\dots,e^{a_nt}}\enbrace{E_n+tN+t^2\frac{N^2}{2}+\dots}
-\end{split}
-\end{equation*}\\
-Die Potenzreihe von $e^{Nt}$ ist auf endliche Summanden begrenzt.
+\subsubsection{Lösen einer linearen Differentialgleichung}
+Gegeben: $y'(t) = \lambda y(t)$, mit $y(0) = c$\\
+Lösung: $y(t) = ce^{\lambda t}$ mit $c \in \mathbb R$\\
+\subsubsection{Lösen eines Systems linearer Differentialgleichungen}
+Gegeben: $y'(t) = Ay$, mit $y_1(0) = c_1 , ..., y_n(0) = c_n$\\ 
+Wobei $A \in \mathbb R^{nxn}, c_1, ..., c_n \in \mathbb R, y,y'\in\mathbb R^n$.\\
+Lösung:\\
+\begin{enumerate}
+	\item Eigenwerte und Eigenvektoren von $A$ bestimmen.
+	\item $\begin{pmatrix}
+	x_1(t)\\
+	\vdots\\
+	x_n(t) \\
+	\end{pmatrix}
+	= c_1e^{\lambda_1t}v_1+...+c_ne^{\lambda_nt}v_n$.
+	\item Anfangswerte einsetzen und Werte für $c_1$, bis $c_n$ bestimmen.
+\end{enumerate}
 \end{multicols*}
 % Ende der Spalten
 
