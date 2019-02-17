@@ -62,11 +62,12 @@
   
 %Custom functions
 \DeclareMathOperator{\arccot}{arccot}
-\DeclareMathOperator{\Bild}{Bild}
+\DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\rang}{rang}
 \DeclareMathOperator{\col}{col}
 \DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\Kern}{kern}
 
 
 
@@ -155,8 +156,8 @@ d & -b \\
 \textbf{Bringe A auf ZSF} \\
 Rang (Zeilrang) $\rang(A)$: Anzahl N0-Zeilen \\     
 Zeilenraum $\row(A)$: Erzeugnis der Zeilen, $\text{Basis}(\row(A)) = \{\text{ N0-Zeilen }\}$ \\
-Kern: $\ker(A) = \dme{x \in \mathbb K^n}{Ax= 0}$ \\
-Dimensionsformel: $\rang(A) + \mathrm{dim}(\ker(A)) = n$ \\
+Kern: $\Kern(A) = \dme{x \in \mathbb K^n}{Ax= 0}$ \\
+Dimensionsformel: $\rang(A) + \mathrm{dim}(\Kern(A)) = n$ \\
 \textbf{Bringe A auf Spaltenstufenform (transponieren, ZSF)} \\
 Spaltenrang: Anzahl der N0-Spalten\\
 Spaltenraum $\col(A)$: Erzeugnis der Spalten, $\text{Basis}(\col(A)) = \{\text{ N0-Spalten }\}$ \\
@@ -184,7 +185,7 @@ Das LGS $Ax=b$ kurz $(A|b)$ mit $A\in \mathbb K^{m\times n}$, $x\in \mathbb K^n$
 \\
 \textbf{Lösbarkeitskriterium:}\\
 Ein LGS $(A|b)$ ist genau dann lösbar, wenn: $\rang(A)=\rang(A|b)$\\
-Die Lösung des LGS $(A|b)$ hat $\dim(\ker A) = n-\rang(A)$ frei wählbare Parameter.\\
+Die Lösung des LGS $(A|b)$ hat $\dim(\Kern(A)) = n-\rang(A)$ frei wählbare Parameter.\\
 \\
 Das LGS hat eine Lsg. wenn $\det A \not= 0$ \quad $\rightarrow \exists A^{-1}$ \\
 Das homogene LGS: $(A|0)$ hat stets die triviale Lösung $0$\\
@@ -217,7 +218,7 @@ $A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
 {\tiny (Wenn eine der Aussagen gilt, gelten alle anderen)} \\ \\
 \begin{tabular}{ll}	
 	1)  $A$ ist invertierbar & 2)  $\rang(A)=n$ \\
-	3)  $\mathrm{Kern}(A)={0}$ & 4) $\dim(\col(A))=\dim(\row(A))=n$\\
+	3)  $\Kern(A)={0}$ & 4) $\dim(\col(A))=\dim(\row(A))=n$\\
 	5) $\det(A)\ne0$ & 6) Zeilen/Spalten von $A$ linear unabhängig
 \end{tabular}
 
@@ -392,10 +393,10 @@ ist die Darstellungsmatrix von $f$ bzgl. $B$ und $C$. \\
 ''In der j-ten Spalte der Abbildungsmatrix stehen die Koordinaten des Bildes $f(b_j)$ bzgl. der Basis $C=(c_1,\dots,c_m)$'' \\ \\
 \textbf{Eigenschaften von $f$ mit Hilfe von $[f]$}
 \begin{itemize}\itemsep0pt
-\item $\ker(f) = \{ x\in\mathbb{R}^n : f(x) = 0 \}$
-\item $\Bild(f) = \col([f])$
-\item $f$ injektiv, wenn $\ker([f])=\{0\}$
-\item $f$ surjektiv, wenn $\Bild([f])=\mathbb{R}^m$
+\item $\Kern(f) = \{ x\in\mathbb{R}^n : f(x) = 0 \}$
+\item $\im(f) = \col([f])$
+\item $f$ injektiv, wenn $\Kern([f])=\{0\}$
+\item $f$ surjektiv, wenn $\im([f])=\mathbb{R}^m$
 \item $f$ bijektiv, wenn $[f]$ invertierbar
 \item $f$ ist bijektiv $\Leftrightarrow f$ ist injektiv $\Leftrightarrow f$ ist surjektiv
 \end{itemize}
@@ -450,7 +451,7 @@ $\lambda_1,\dots, \lambda_r$ sind die Eigenwerte mit algebraischer Vielfachheit 
 Ist $p_A$ nicht vollständig in Linearfaktoren zerlegbar $\Rightarrow$ A nicht diagonalisierbar!
 \item Bestimme zu jeden Eigenwert $\lambda_i$ den Eigenraum $V_i$
 \begin{equation*}
-V_i=\ker(A-\lambda_i\mathbb{I}_n)=\text{span}(B_i)
+V_i=\Kern(A-\lambda_i\mathbb{I}_n)=\text{span}(B_i)
 \end{equation*}
 Die Vektoren der Basis $B_i$ sind die Eigenvektoren von $\lambda_i$.\\ \\
 \textbf{Einfacher:} Der Eigenvektor $v_i$ ist Lösung des homogenen LGS
