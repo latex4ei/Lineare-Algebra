@@ -215,11 +215,13 @@ Summen und Vielfache der Lösungen von $(A|0)$ sind wieder Lösungen.
 $A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
 
 \subsubsection{Äquivalente Aussagen für $A\in \mathbb K^{n\times n}$}
-{\tiny (Wenn eine der Aussagen gilt, gelten alle anderen)} \\ \\
-\begin{tabular}{ll}	
-	1)  $A$ ist invertierbar & 2)  $\rang(A)=n$ \\
-	3)  $\Kern(A)={0}$ & 4) $\dim(\col(A))=\dim(\row(A))=n$\\
-	5) $\det(A)\ne0$ & 6) Zeilen/Spalten von $A$ linear unabhängig
+\begin{tabular}{ll}
+	1)  $A$ ist invertierbar & 2) $\dim(\col(A))=\dim(\row(A))=n$\\
+	3)  $\Kern(A)={0}$ & 4) Die strenge ZSF von $A$ ist $\mathbb{I}_n$\\
+	5) $\det(A)\ne0$ & 6) Zeilen/Spalten von $A$ linear unabhängig\\
+	7) $Ax=b$ hat eine & 8) 0 ist kein Singulärwert von $A$\\\ \ \ \ eindeutige Lösung $\forall b\in\mathbb{R}^n$ & 9) Lineare Abbildung ist bijektiv\\
+	10)  $\rang(A)=n$ & 11) 0 ist kein Eigenwert von $A$\\
+
 \end{tabular}
 
 \subsection{Vektoren}
@@ -373,13 +375,13 @@ $[f] = \begin{pmatrix}f(e_1) & \dots & f(e_n)
 $B=(b_1,\dots,b_n)$ ist eine Basis von $V$, $\exists B^{-1}$. \\
 $[f]_B := B^{-1}[f]B$.\\ \\
 Gesucht: $x \in\mathbb{R}^n$ mit $f(x) = b$ und $b\in\mathbb{R}^n$.\\
-- Löse das LGS mit $[f]_Bx = B^{-1}b$.\\
+- Löse das LGS $[f]_Bx = B^{-1}b$.\\
 Folgende Aussagen sind äquivalent:\\
 a) $[f]_B = \begin{pmatrix}
 \lambda_1 & & & \\
 & \lambda_2 & & \\
 & & \ddots & \\
-& & & \lambda_4 \\ 
+& & & \lambda_n \\ 
 \end{pmatrix}$.\\
 b) $f(b_1) = \lambda_1b_1, ..., f(b_n) = \lambda_nb_n$.\\ \\
 
