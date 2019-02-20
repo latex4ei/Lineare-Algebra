@@ -62,9 +62,13 @@
   
 %Custom functions
 \DeclareMathOperator{\arccot}{arccot}
-\DeclareMathOperator{\Bild}{Bild}
+\DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\diag}{diag}
-\DeclareMathOperator{\rg}{rg}
+\DeclareMathOperator{\rang}{rang}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\Kern}{kern}
+
 
 
 % Dokumentbeginn
@@ -92,7 +96,8 @@ Cauchy-Schwarz-Ungleichung: \qquad
 \begin{math}\begin{array}{l}
 \left| \sprod{x}{y} \right| \le \| x\| \cdot \| y\|
 \end{array}\end{math}\\
-$\mathbb{K}$ steht für $\mathbb{R}$ und $\mathbb{C}$
+$\mathbb{K}$ steht für $\mathbb{R}$ und $\mathbb{C}$\\
+$\mathbb{I}_n$ ist die $nxn$-Einheitsmatrix.
 
 \subsection{Matrizen}
 % ----------------------------------------------------------------------
@@ -125,19 +130,19 @@ $(\lambda A)^\top=\lambda A^\top$ \qquad \qquad \qquad $(A^\top)^\top=A$\\
 $A\in \mathbb K^{n\times n}$ ist symmetrisch, falls $A=A^\top$\qquad ($\Rightarrow$ diagbar)\\
 $A\in \mathbb K^{n\times n}$ ist schiefsymmetrisch, falls $A=-A^\top$\\
 $A\in \mathbb K^{n\times n}$ ist orthogonal (Spalten-/Zeilenvektoren=ONB), falls:\\
-$AA^\top=E_n \quad \Leftrightarrow \quad A^\top=A^{-1} \quad \Leftrightarrow \quad \det A=\pm 1$\\
+$AA^\top=\mathbb{I}_n \quad \Leftrightarrow \quad A^\top=A^{-1} \quad \Leftrightarrow \quad \det A=\pm 1$\\
 $A\in \mathbb C^{n\times n}$ ist hermitesch, falls $A=\overline{A}^\top$  \quad (kmplx. konj. u. transp.)
 
 
 \subsubsection{Inverse Matrix von $A\in \mathbb K^{n\times n}$}
-Für die inverse Matrix $A^{-1}$ von $A$ gilt: $A^{-1}A=E_n$\\
+Für die inverse Matrix $A^{-1}$ von $A$ gilt: $A^{-1}A=\mathbb{I}_n$\\
 $(A^{-1})^{-1}=A$ \qquad $(AB)^{-1}=B^{-1}A^{-1}$ \\
 $(A^\top)^{-1}=(A^{-1})^\top$\\
 \\
-$A\ \in \mathbb K^{n\times n}$ ist invertierbar, falls: $\det (A) \ne 0 \quad \lor \quad rg(A)=n$\\
+$A\ \in \mathbb K^{n\times n}$ ist invertierbar, falls: $\det (A) \ne 0 \quad \lor \quad \rang(A)=n$\\
 \\
 Berechnen von $A^{-1}$ nach Gauß:\\
-$AA^{-1}=E_n\quad\Rightarrow\quad (A|E_n)\overset{EZF}{\longrightarrow}(E_n|A^{-1})$\\
+$AA^{-1}=\mathbb{I}_n\quad\Rightarrow\quad (A|\mathbb{I}_n)\overset{EZF}{\longrightarrow}(\mathbb{I}_n|A^{-1})$\\
 2x2-Matrix:$\enbrace{\begin{matrix}
 a & b \\
 c & d
@@ -149,13 +154,13 @@ d & -b \\
 \subsubsection{Rang einer Matrix $A\in \mathbb K^{m\times n}$}
 {\tiny (N0-Zeilen = Nicht-Null-Zeilen)}\\ \\
 \textbf{Bringe A auf ZSF} \\
-Rang (Zeilrang) $\rg(A)$: Anzahl N0-Zeilen \\     
-Zeilenraum $Z_A$: Erzeugnis der Zeilen, $\text{Basis}(Z_A) = \{\text{ N0-Zeilen }\}$ \\
-Kern: $\ker(A) = \dme{x \in \mathbb K^n}{Ax= 0}$ \\
-Dimensionsformel: $\rg(A) + \mathrm{dim}(\ker(A)) = n$ \\
+Rang (Zeilrang) $\rang(A)$: Anzahl N0-Zeilen \\     
+Zeilenraum $\row(A)$: Erzeugnis der Zeilen, $\text{Basis}(\row(A)) = \{\text{ N0-Zeilen }\}$ \\
+Kern: $\Kern(A) = \dme{x \in \mathbb K^n}{Ax= 0}$ \\
+Dimensionsformel: $\rang(A) + \mathrm{dim}(\Kern(A)) = n$ \\
 \textbf{Bringe A auf Spaltenstufenform (transponieren, ZSF)} \\
 Spaltenrang: Anzahl der N0-Spalten\\
-Spaltenraum $S_A$: Erzeugnis der Spalten, $\text{Basis}(S_A) = \{\text{ N0-Spalten }\}$ \\
+Spaltenraum $\col(A)$: Erzeugnis der Spalten, $\text{Basis}(\col(A)) = \{\text{ N0-Spalten }\}$ \\
 Bild = Spaltenraum: Erzeugnis der Spalten 
 \subsubsection{Matrixpotenzen}
 Gegeben: $A \in\mathbb{R}^{mxn}, x \in\mathbb{R}^n$.\\
@@ -179,8 +184,8 @@ Gesucht: $A^n$.
 Das LGS $Ax=b$ kurz $(A|b)$ mit $A\in \mathbb K^{m\times n}$, $x\in \mathbb K^n$, $b\in \mathbb K^m$ hat $m$ Gleichungen und $n$ Unbekannte.\\
 \\
 \textbf{Lösbarkeitskriterium:}\\
-Ein LGS $(A|b)$ ist genau dann lösbar, wenn: $\rg(A)=\rg(A|b)$\\
-Die Lösung des LGS $(A|b)$ hat $\dim(\ker A) = n-\rg(A)$ frei wählbare Parameter.\\
+Ein LGS $(A|b)$ ist genau dann lösbar, wenn: $\rang(A)=\rang(A|b)$\\
+Die Lösung des LGS $(A|b)$ hat $\dim(\Kern(A)) = n-\rang(A)$ frei wählbare Parameter.\\
 \\
 Das LGS hat eine Lsg. wenn $\det A \not= 0$ \quad $\rightarrow \exists A^{-1}$ \\
 Das homogene LGS: $(A|0)$ hat stets die triviale Lösung $0$\\
@@ -210,11 +215,13 @@ Summen und Vielfache der Lösungen von $(A|0)$ sind wieder Lösungen.
 $A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
 
 \subsubsection{Äquivalente Aussagen für $A\in \mathbb K^{n\times n}$}
-{\tiny (Wenn eine der Aussagen gilt, gelten alle anderen)} \\ \\
-\begin{tabular}{ll}	
-	1)  $A$ ist invertierbar & 2)  $\rg(A)=n$ \\
-	3)  $\mathrm{Kern}(A)={0}$ & 4) $\dim(S_A)=\dim(Z_A)=n$\\
-	5) $\det(A)\ne0$ & 6) Zeilen/Spalten von $A$ linear unabhängig
+\begin{tabular}{ll}
+	1)  $A$ ist invertierbar & 2) $\dim(\col(A))=\dim(\row(A))=n$\\
+	3)  $\Kern(A)={0}$ & 4) Die strenge ZSF von $A$ ist $\mathbb{I}_n$\\
+	5) $\det(A)\ne0$ & 6) Zeilen/Spalten von $A$ linear unabhängig\\
+	7) $Ax=b$ hat eine & 8) 0 ist kein Singulärwert von $A$\\\ \ \ \ eindeutige Lösung $\forall b\in\mathbb{R}^n$ & 9) Lineare Abbildung ist bijektiv\\
+	10)  $\rang(A)=n$ & 11) 0 ist kein Eigenwert von $A$\\
+
 \end{tabular}
 
 \subsection{Vektoren}
@@ -300,7 +307,7 @@ $B\subset V$ heißt
 \item \textbf{Orthonormalsystem}, wenn $B$ Orthogonalssystem u. $\forall v\in B: \norm{v}=1$
 \item \textbf{Orthonormalbasis(ONB)},  wenn $B$ Orthonormalsystem u. Basis von V ist
 \end{itemize}
-\textbf{Matrix $A$ heißt orthogonal}, wenn $A^\top A = E_n$
+\textbf{Matrix $A$ heißt orthogonal}, wenn $A^\top A = \mathbb{I}_n$
 \begin{itemize}\itemsep0pt
 \item $A^{-1}=A^\top $
 \item $\det{A}=\pm1$
@@ -336,7 +343,7 @@ Alternative Methode
 $\norm{a}=\sqrt{\sprod{a}{a}} =\sqrt{a_1^2+a_2^2+\ldots +a_n^2}$\\
 $\forall v, w \in \mathbb{R}^n$:
 \begin{enumerate}\itemsep0pt
-\item $N(\lambda v)=\abs{\lambda}N(v)$
+\item $\norm{\lambda v}=\abs{\lambda}\norm v$
 \item $\norm{v+w}\le \norm{v} + \norm{w}$
 \end{enumerate}
 
@@ -347,50 +354,64 @@ Abbildung $f:V\rightarrow W$ ist linear, wenn
 \item $f(a+b)=f(a)+f(b)$
 \item $f(\lambda a)=\lambda f(a)$
 \end{enumerate}
-$\Rightarrow$ Abbildung als Matrix darstellbar\\ \\
+$\Rightarrow$ Abbildung als Matrix darstellbar (siehe Abbildungsmatrix)\\ \\
 \textbf{Injektiv}, wenn aus $f(x_1)=f(x_2) \Rightarrow x_1=x_2$\\
 \textbf{Surjektiv}: $\forall y\in W \ \exists x\in V:f(x)=y$\\ \quad (Alle Werte aus $W$ werden angenommen.)\\
 \textbf{Bijektiv}(Eineindeutig): $f$ ist injektiv und surjektiv $\Rightarrow$ $f$ umkehrbar.
 \subsubsection{Koordinatenvektor bezüglich einer Basis $B$}
-$B=(b_1,\dots,b_n)$ geordnete Basis des Vektorraums $V$, so kann jeder Vektor $v\in V$ als Linearkombination bzgl. $B$ dargestellt werden: \\
-$v=\lambda_1b_1+\dots+\lambda_nb_n$, wobei $\lambda_1,\dots,\lambda_n\in \mathbb{R}$ ($\Rightarrow$ Gauß)\\
-$\Rightarrow v_B=(\lambda_1, \dots ,\lambda_n)^\top$ ist der Koordinatenvektor bzgl. Basis $B$
-\subsubsection{Darstellungsmatrix}
+Gegeben: Vektorraum $V \in\mathbb{R}^n$, $v \in V$.\\
+Gesucht: $[v]_B$ (Koordinaten von $v$ bezüglich der Basis $B$).
+\begin{enumerate}
+	\item Bestimme Basis $B$ von $V$.
+	\item Löse das LGS $Bx = v$.
+	\item $[v]_B = x$.
+\end{enumerate}
+\subsubsection{Abbildungsmatrix (Darstellungsmatrix)}
 Lineare Abbildung $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ \\
-Darstellungsmatrix spaltenweise:
-$A=\begin{pmatrix}f(e_1) & \dots & f(e_n)
+Abbildungsmatrix spaltenweise:
+$[f] = \begin{pmatrix}f(e_1) & \dots & f(e_n)
 \end{pmatrix} $ \\ \\
 \textbf{Allgemein} $f:V\rightarrow W$ mit $V, W$ Vektorräume \\
-$B=(b_1,\dots,b_n)$ ist eine Basis von $V$ \\
-$C=(c_1,\dots,c_m)$ ist eine Basis von $W$ \\
-$\Rightarrow A=M(f)_B^C = \begin{pmatrix}
+$B=(b_1,\dots,b_n)$ ist eine Basis von $V$, $\exists B^{-1}$. \\
+$[f]_B := B^{-1}[f]B$.\\ \\
+Gesucht: $x \in\mathbb{R}^n$ mit $f(x) = b$ und $b\in\mathbb{R}^n$.\\
+- Löse das LGS $[f]_Bx = B^{-1}b$.\\
+Folgende Aussagen sind äquivalent:\\
+a) $[f]_B = \begin{pmatrix}
+\lambda_1 & & & \\
+& \lambda_2 & & \\
+& & \ddots & \\
+& & & \lambda_n \\ 
+\end{pmatrix}$.\\
+b) $f(b_1) = \lambda_1b_1, ..., f(b_n) = \lambda_nb_n$.\\ \\
+
+$C=(c_1,\dots,c_n)$ ist eine Basis von $V$. \\
+$\Rightarrow [f]_B^C = \begin{pmatrix}
 \vert & \vert &  & \vert \\
 f(b_1)_C & f(b_2)_C & \cdots & f(b_n)_C\\
 \vert & \vert &  & \vert
 \end{pmatrix}$ \\
 ist die Darstellungsmatrix von $f$ bzgl. $B$ und $C$. \\
 ''In der j-ten Spalte der Abbildungsmatrix stehen die Koordinaten des Bildes $f(b_j)$ bzgl. der Basis $C=(c_1,\dots,c_m)$'' \\ \\
-\textbf{Eigenschaften von $f$ mit Hilfe von $A$}
+\textbf{Eigenschaften von $f$ mit Hilfe von $[f]$}
 \begin{itemize}\itemsep0pt
-\item $f$ injektiv, wenn $\ker(A)=\{0\}$
-\item $f$ surjektiv, wenn $\Bild(A)=\mathbb{R}^m$
-\item $f$ bijektiv, wenn $A$ invertierbar
+\item $\Kern(f) = \{ x\in\mathbb{R}^n : f(x) = 0 \}$
+\item $\im(f) = \col([f])$
+\item $f$ injektiv, wenn $\Kern([f])=\{0\}$
+\item $f$ surjektiv, wenn $\im([f])=\mathbb{R}^m$
+\item $f$ bijektiv, wenn $[f]$ invertierbar
+\item $f$ ist bijektiv $\Leftrightarrow f$ ist injektiv $\Leftrightarrow f$ ist surjektiv
 \end{itemize}
 \subsubsection{Transformationsmatrix}
-Gegeben: Basen $\mathcal B=(v_1, \dots,v_n)$ und $\mathcal B'=(v'_1,\dots,v'_n) \in V$ \\
-Darstellung der Elemente aus $\mathcal B'$ in der Basis $\mathcal B$:\\
-$v'_j = a_{1j}v_1+a_{2j}v_2+\dots+a_{nj}v_n$ mit $a_{ij}$ als Koeffizienten des Vektors $v'_j$ bzgl. der Basis $\mathcal B$\\
-$\Rightarrow$ Transformationsmatix $T_{\mathcal B'}^{\mathcal B}=(a_{ij})$\\ \\
-\textbf{Regeln und Berechnung} ($B$ ist Matrix der Basis $\mathcal B$)
-\begin{itemize}\itemsep0pt
-\item $T_{\mathcal B'}^{\mathcal B}=B^{-1}B'$
-\item Falls $\mathcal B$ Standardbasis $\Rightarrow$ Matrix $B=E$ und $T_{\mathcal B'}^{E}=B'$
-\item $\enbrace{T_{\mathcal B'}^{\mathcal B}}^{-1}=T_{\mathcal B}^{\mathcal B'}$ \quad \qquad $B'=BT_{\mathcal B'}^{\mathcal B}$\\
-\item Vektor $v$ bzgl. Basis $E_n$ soll bzgl. Basis $\mathcal B'$ dargestellt werden: \\$v_{\mathcal B'}=T_{E}^{\mathcal B'}v$
-\item Abbildungsmatrix bzgl. Basis $\mathcal{B}$ \\
-$M(f)_{\mathcal{B}}^{\mathcal{B}}=T_{E}^{\mathcal{B}} \cdot M(f)_E^E \cdot T_{\mathcal{B}}^E$
-\end{itemize}\itemsep0pt
-
+Transformationsmatrix der Koordinaten von $B$ zu $C$: $_CT_B$\\
+\textbf{Regeln und Berechnung:}
+\begin{itemize}
+	\item $_{\mathbb{I}_n}T_B = T_B$: Vektoren der Basis $B$
+	\item $_CT_B = {_CT} \cdot T_B$
+	\item $(_CT_B)^{-1} = {_BT_C}$
+	\item $[v]_C = {_CT_B}\cdot[v]_B$
+	\item $C=B\cdot {_CT_B}$
+\end{itemize}
 \subsection{Diagonalisierung (Eigenwerte und Eigenvektoren)}
 Gegeben: Quadratische Matrix $A \in \mathbb{R}^{n\times n}$.\\
 Gilt $Av = \lambda v$ mit $v\ne 0$, so nennt man
@@ -421,7 +442,7 @@ Gegeben: $A\in \mathbb{R}^{n\times n}$
 \begin{enumerate}\itemsep0pt
 \item Bestimme das charakteristische Polynom von $A$
 \begin{equation*}
-p_A(\lambda)=\det(A-\lambda E_n)
+p_A(\lambda)=\det(A-\lambda \mathbb{I}_n)
 \end{equation*}
 \item Charakteristische Polynom $p_A$ in Linearfaktoren zerlegen.
 \begin{equation*}
@@ -432,12 +453,12 @@ $\lambda_1,\dots, \lambda_r$ sind die Eigenwerte mit algebraischer Vielfachheit 
 Ist $p_A$ nicht vollständig in Linearfaktoren zerlegbar $\Rightarrow$ A nicht diagonalisierbar!
 \item Bestimme zu jeden Eigenwert $\lambda_i$ den Eigenraum $V_i$
 \begin{equation*}
-V_i=\ker(A-\lambda_iE_n)=\text{span}(B_i)
+V_i=\Kern(A-\lambda_i\mathbb{I}_n)=\text{span}(B_i)
 \end{equation*}
 Die Vektoren der Basis $B_i$ sind die Eigenvektoren von $\lambda_i$.\\ \\
 \textbf{Einfacher:} Der Eigenvektor $v_i$ ist Lösung des homogenen LGS
 \begin{equation*}
-(A-\lambda_i E_n)v_i=0
+(A-\lambda_i \mathbb{I}_n)v_i=0
 \end{equation*}
 $\dim(V_i)=\text{geo}(\lambda_i)$  geometr. Vielfachheit des Eigenwerts $\lambda_i$. \\
 Gilt geo$(\lambda_i)\ne\text{alg}(\lambda_i)$ für ein $i$, ist A nicht diagonalisierbar!
