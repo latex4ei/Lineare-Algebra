@@ -68,6 +68,7 @@
 \DeclareMathOperator{\col}{col}
 \DeclareMathOperator{\row}{row}
 \DeclareMathOperator{\Kern}{kern}
+\DeclareMathOperator{\proj}{proj}
 
 
 
@@ -238,8 +239,9 @@ $\langle v,w \rangle=v^\top  w=v_1w_1+\dots+v_nw_n$\\ \\
 $\langle v,w \rangle_A=v^\top A w$\\
 \textbf{Skalarprodukt Polynome} $\sprod{p(x)}{q(x)}=\int\limits_{0}^{1}p(x)q(x)\,dx$ \\
 \textbf{Orthogonalität} $\sprod{a}{b} = 0 \Leftrightarrow a\perp b$ \\
+\textbf{Projektion} eines Vektor $v$ längs $a$: $\proj_a(v) = \frac{\sprod{v}{a} }{\sprod{a}{a} }\cdot a$\\
 \textbf{Orthogonale Zerlegung} eine Vektors $v$ längs $a$:\\ 
-$v = v_a + v_{a^\perp} \text{ mit } v_a = \frac{\sprod{v}{a} }{\sprod{a}{a} }\cdot a \text{ und }	 v_{a^\perp} = v - v_a	$ \\ 
+$v = \proj_a(v) + \proj_{a^\perp}(v) \Rightarrow \proj_{a^\perp}(v) = v - \proj_a(v)$\\
 \textbf{Winkel} \quad 	$\cos \phi = \frac{\sprod{a}{b}}{\norm{a} \norm{b}} $ \qquad
 $\phi = \arccos \enbrace{ \frac{\sprod{a}{b} }{\norm{a} \norm{b} } }$
 
@@ -321,21 +323,28 @@ $B\subset V$ heißt
 \item $b_{2}= \frac{c_2}{\norm{c_2}}$\ \ mit \ \ $c_2=v_2-\frac{\sprod{v_2}{v_1}}{\sprod{v_1}{v_1}}\cdot v_1$
 \item $b_{3}= \frac{c_3}{\norm{c_3}}$\ \ mit \ \ $c_3=v_3-\frac{\sprod{v_3}{v_1}}{\sprod{v_1}{v_1}} \cdot v_1-\frac{\sprod{v_3}{c_2}}{\sprod{c_2}{c_2}}\cdot c_2$
 \end{enumerate}
+\textbf{Erweitern einer ONB von $V$ auf eine ONB des $\mathbb{R}^n$}
+\begin{enumerate}\itemsep0pt
+	\item Vektor $e_i \text{ mit } i \in \{1...n\}$ so wählen, sodass die Skalarprodukte möglichst einfach zu berechnen sind.
+	\item Gram-Schmidt für $e_i$ $\Rightarrow$ Ergebnis zur Basis hinzufügen
+	\item So lange Wiederholen bis die Basis $n$ Vektoren besitzt.
+	\item Alle neu hinzugefügten Vektoren bilden zusammen eine ONB von $V^\perp$
+\end{enumerate}
 \textbf{Orthogonale Projektion auf UVR} \\
 Gegeben: Vektorraum $V \in \mathbb{R}^n$, $v\in V$, Untervektorraum $U\subset V$
 \begin{enumerate}\itemsep0pt
 \item Basis von $U$ bestimmen
 \item Orthogonalisiere Basis $\{u_1,u_2,u_3,\ldots\}$ von $U$
-\item $v_U = \frac{\sprod{v}{u_1}}{\sprod{u_1}{u_1}}u_1 + \frac{\sprod{v}{u_2}}{\sprod{u_2}{u_2}}u_2 +\dots$
-\item $v_{U^\perp}=v-v_U$
-\item Abstand von $v$ zu $U$ = $\norm{v_{U^\perp}}$
+\item $\proj_U(v) = \frac{\sprod{v}{u_1}}{\sprod{u_1}{u_1}}u_1 + \frac{\sprod{v}{u_2}}{\sprod{u_2}{u_2}}u_2 +\dots$
+\item $\proj_{U^\perp}(v)=v-\proj_U(v)$
+\item Abstand von $v$ zu $U$ = $\norm{\proj_{U^\perp}(v)}$
 \end{enumerate}
 Alternative Methode
 \begin{enumerate}\itemsep0pt
 \item Basis $\{b_1,\ldots,b_r\}$ von $U$ bestimmen
 \item Setze $A = \big(b_1\ b_2\ \dots \ b_r\big) \in \mathbb{R}^{n\times r}$
 \item Löse das LGS $A^\top Ax=A^\top v$ und erhalte den Lösungsvektor $x=(\lambda_1, \dots,\lambda_r)^\top $
-\item $v_U=\lambda_1 b_1 +\dots +\lambda_r b_r$
+\item $\proj_U(v)=\lambda_1 b_1 +\dots +\lambda_r b_r$
 \end{enumerate}
 
 \subsection{Norm}
