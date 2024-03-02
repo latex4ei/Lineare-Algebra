@@ -489,26 +489,29 @@ $A = QR$, wobei $Q$ orthogonal und R oben dreieckig.\\
 \subsection{Kleinstes-Quadrate-Problem}
 Für $Ax = b$ lautet die
 \textbf{Normalengleichung}
-$A^TAx = A^Tb$\\
+$A^TAx^* = A^Tb$\\
+\\
+\textbf{Lösen} durch Gauß oder Umstellen: $x^* = (A^TA)^{-1}A^Tb$\\
+Für  $A=QR$ lautet die Lösung $x^* = R^{-1}Q^Tb$\\
 $\Rightarrow$ optimale Lösung mit minimalem quadratischen Fehler (existiert immer).
 
 \subsection{Singulärwertzerlegung}
-Bei der Singulärwertzerlegung wird eine beliebige Matrix $A\in \mathbb{R}^{m\times n}$ als Produkt dreier Matrizen $U$, $S$ und $V$ geschrieben
+Bei der Singulärwertzerlegung wird eine beliebige Matrix $A\in \mathbb{R}^{m\times n}$ als Produkt dreier Matrizen $V$, $\Sigma$ und $W$ geschrieben
 \begin{equation*}
-A=USV^\top
+A=V\Sigma W^\top
 \end{equation*}
-mit $U\in \mathbb{R}^{m\times m}$, $S\in \mathbb{R}^{m\times n}$ und $V\in \mathbb{R}^{n\times n}$.\\
-$U$ und $V$ sind orthogonal, $S$ ist eine Diagonalmatrix.
+mit $V\in \mathbb{R}^{m\times m}$, $\Sigma\in \mathbb{R}^{m\times n}$ und $W\in \mathbb{R}^{n\times n}$.\\
+$V$ und $W$ sind orthogonal, $\Sigma$ ist eine Diagonalmatrix.
 \subsubsection{Rezept: Singulärwertzerlegung}
 Gegeben: $A\in \mathbb{R}^{m\times n}$
 \begin{enumerate}\itemsep0pt
-\item Bestimme alle Eigenwerte $\lambda_j$ und Eigenvektoren $v_j$ der Matrix $A^\top A\in \mathbb{R}^{n\times n}$ und ordne sie \\ $\lambda_1\ge\lambda_2\ge \dots \ge \lambda_r>\lambda_{r+1}=\dots=\lambda_n=0$ mit $r\le n$
-\item Bestimme eine ONB des $\mathbb{R}^n$ aus den Eigenvektoren $v_j$ und erhalte $V=\begin{pmatrix} 
-v_1 &\dots & v_n
+\item Bestimme alle Eigenwerte $\lambda_j$ und Eigenvektoren $w_j$ der Matrix $A^\top A\in \mathbb{R}^{n\times n}$ und ordne sie \\ $\lambda_1\ge\lambda_2\ge \dots \ge \lambda_r>\lambda_{r+1}=\dots=\lambda_n=0$ mit $r\le n$
+\item Bestimme eine ONB des $\mathbb{R}^n$ aus den Eigenvektoren $w_j$ und erhalte $W=\begin{pmatrix} 
+w_1 &\dots & w_n
 \end{pmatrix} \in \mathbb{R}^{n\times n}$
 \item Die Singulärwerte sind $\sigma_j=\sqrt{\lambda_j}$ \qquad $j=1,\dots,\min\{m,n\}$
 \begin{equation*}
-S=\begin{pmatrix}
+\Sigma=\begin{pmatrix}
 \sigma_1 & & & 0 & \dots & 0\\
  & \ddots & &  \vdots &  &  \vdots\\
 & & \sigma_m & 0 & \dots & 0\\
@@ -516,7 +519,7 @@ S=\begin{pmatrix}
 \qquad m<n
 \end{equation*}
 \begin{equation*}
-S=\begin{pmatrix}
+\Sigma=\begin{pmatrix}
 \sigma_1 & & \\
  & \ddots & \\
 & & \sigma_n \\
@@ -526,21 +529,27 @@ S=\begin{pmatrix}
 \end{pmatrix} \in \mathbb{R}^{m\times n}
 \qquad m>n
 \end{equation*}
-\item Bestimme $u_1,\dots,u_r$ aus $u_i=\frac{1}{\sigma_j}Av_j$ für alle $j=1,\dots,r$ (alle $\sigma_j\ne 0$)
-\item Falls $r<m$ ergänze $u_1,\dots,u_r$ zu einer ONB, bzw. zu $U=\begin{pmatrix}
-u_1 & \dots & u_m
+\item Bestimme $v_1,\dots,v_r$ aus $v_i=\frac{1}{\sigma_j}Aw_j$ für alle $j=1,\dots,r$ (alle $\sigma_j\ne 0$)
+\item Falls $r<m$ ergänze $v_1,\dots,v_r$ zu einer ONB, bzw. zu $V=\begin{pmatrix}
+v_1 & \dots & v_m
 \end{pmatrix}$
 orthogonal.
-\item $A=USV^\top$
+\item $A=V\Sigma W^\top$
 \end{enumerate}
-
-\subsection{Lineare Differentialgleichungen}
+\subsubsection{Kompression}
+\begin{itemize}\itemsep0pt
+\item Rang k Matrix $A_{(k)}=V\Sigma_{(k)}W^\top$. Die Matrix $\Sigma_{(k)}$ enthält nur die Singulärwerte $\sigma_1, ...,\sigma_k$. ($\sigma_{k+1}, ...,\sigma_{n/m}=0$).\\
+\item Frobenius-Norm $|| A ||_F = \sqrt[]{\sum_{i=1}^{m} \sum_{j=1}^{m} {a^{2}_{i,j}}}$\\
+\item Es gilt: $|| A-A_{(k)} ||_F \leq || A-B ||_F$ mit $B$ als eine beliebige Matrix des $\mathbb{R}^{m\times n}$ mit $rang(B) \leq rang(A_{(k)}) = k$
+\item Speicheraufwand einer Matrix $A$: $rang(A) \cdot (m+n)$
+\end{itemize}
+\subsection{Lineare Differentialgleichungen und Rekursive Folgen}
 \subsubsection{Lösen einer linearen Differentialgleichung}
 Gegeben: $y'(t) = \lambda y(t)$, mit $y(0) = c$\\
 Lösung: $y(t) = ce^{\lambda t}$ mit $c \in \mathbb R$\\
 \subsubsection{Lösen eines Systems linearer Differentialgleichungen}
-Gegeben: $y'(t) = Ay$, mit $y_1(0) = c_1 , ..., y_n(0) = c_n$\\ 
-Wobei $A \in \mathbb R^{nxn}, c_1, ..., c_n \in \mathbb R, y,y'\in\mathbb R^n$.\\
+Gegeben: $y'(t) = Ay$, mit $y_1(0) , ..., y_n(0)$\\ 
+Wobei $A \in \mathbb R^{nxn}, y_1(0) , ..., y_n(0) \in \mathbb R, y,y'\in\mathbb R^n$.\\
 Lösung:\\
 \begin{enumerate}
 	\item Eigenwerte und Eigenvektoren von $A$ bestimmen.
@@ -552,6 +561,58 @@ Lösung:\\
 	= c_1e^{\lambda_1t}v_1+...+c_ne^{\lambda_nt}v_n$.
 	\item Anfangswerte einsetzen und Werte für $c_1$, bis $c_n$ bestimmen.
 \end{enumerate}
+\subsubsection{Rekursive Folgen}
+Gegeben: $x_{n+1} = {\alpha} x_n + {\beta} x_{n-1}$, Anfangswerte: $x_0$, $x_1$\\
+Lösung:\\
+\begin{enumerate}
+	\item Matrix A bestimmen. 
+	\begin{equation*}
+	A=\begin{pmatrix}
+	{\alpha}&{\beta}\\
+	1&0
+	\end{pmatrix}
+	\end{equation*}
+	\item LGS aufstellen.
+	\begin{equation*}
+	\begin{pmatrix}
+	x_{n+1}\\
+	x_{n}\end{pmatrix}=\begin{pmatrix}
+	{\alpha}&{\beta}\\
+	1&0
+	\end{pmatrix}
+	\begin{pmatrix}
+	x_{n}\\
+	x_{n-1}\end{pmatrix}
+	\end{equation*}
+	\item Diagonalisieren: $A=SDS^{-1}$
+	\item Anfangswerte $x_0, x_1$ einsetzen und $x_n$ berechnen
+	\begin{equation*}
+	\begin{pmatrix}
+	x_{n+1}\\
+	x_{n}\end{pmatrix}=SD^{n}S^{-1}
+	\begin{pmatrix}
+	x_{1}\\
+	x_{0}\end{pmatrix}
+	\end{equation*}
+\end{enumerate}
+\subsection{Definitheit und Quadratische Funktionen}
+\subsubsection{Definitheit}
+Eine symmetrische Matrix $A \in\mathbb R^{n\times n}$ mit den Eigenwerten (EW) $\lambda_1, ..., \lambda_n$ heißt:
+\begin{itemize}\itemsep0pt
+\item positiv definit: EW positiv $<=> v^{\top}Av> 0,\quad\forall v \in\mathbb R^n\backslash \{0\}$
+\item negativ definit: EW negativ $<=> v^{\top}Av< 0,\quad\forall v \in\mathbb R^n\backslash \{0\}$
+\item positiv semidefinit: EW $\geq 0 <=> v^{\top}Av\geq 0,\quad\forall v \in\mathbb R^n$
+\item negativ semidefinit: EW $\leq 0 <=> v^{\top}Av\leq 0,\quad\forall v \in\mathbb R^n$
+\end{itemize}
+\subsubsection{Quadratische Funktionen}
+\textbf{Form:} $f(x)=x^{\top}Ax+b^{\top}x+c = \langle x,Ax \rangle + \langle b,x \rangle + c$\\
+Berechnen von Extrempunkten:
+\begin{itemize}\itemsep0pt
+\item positiv definit: Minimum bei $x^{*}=-\frac{1}{2}A^{-1}b$
+\item negativ definit: Maximum bei $x^{*}=-\frac{1}{2}A^{-1}b$
+\item positiv/negativ semidefinit: Existenz von Extremum hängt von Lösbarkeit des LGS $2Ax=-b$ ab. (nicht eindeutig!)
+\end{itemize}
+
 \end{multicols*}
 % Ende der Spalten
 
