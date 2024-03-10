@@ -319,9 +319,9 @@ $B\subset V$ heißt
 \end{itemize}\itemsep0pt
 \textbf{Orthonormalisierungsvefahren einer Basis $\{v_1,\ldots,v_n\}$ nach Gram-Schmidt}
 \begin{enumerate}\itemsep0pt
-\item $b_1=\frac{v_1}{\|v_1\|}$ \qquad (Vektor mit vielen 0en oder 1en)
-\item $b_{2}= \frac{c_2}{\norm{c_2}}$\ \ mit \ \ $c_2=v_2-\frac{\sprod{v_2}{v_1}}{\sprod{v_1}{v_1}}\cdot v_1$
-\item $b_{3}= \frac{c_3}{\norm{c_3}}$\ \ mit \ \ $c_3=v_3-\frac{\sprod{v_3}{v_1}}{\sprod{v_1}{v_1}} \cdot v_1-\frac{\sprod{v_3}{c_2}}{\sprod{c_2}{c_2}}\cdot c_2$
+\item $b_1=\frac{c_1}{\|c_1\|}$\ \ mit \ \ $c_1=v_1$ \ \ (Vektor mit vielen 0en oder 1en)
+\item $b_{2}= \frac{c_2}{\norm{c_2}}$\ \ mit \ \ $c_2=v_2-\frac{\sprod{v_2}{c_1}}{\sprod{c_1}{c_1}}\cdot c_1$
+\item $b_{3}= \frac{c_3}{\norm{c_3}}$\ \ mit \ \ $c_3=v_3-\frac{\sprod{v_3}{c_1}}{\sprod{c_1}{c_1}} \cdot c_1-\frac{\sprod{v_3}{c_2}}{\sprod{c_2}{c_2}}\cdot c_2$
 \end{enumerate}
 \textbf{Erweitern einer ONB von $V$ auf eine ONB des $\mathbb{R}^n$}
 \begin{enumerate}\itemsep0pt
@@ -481,8 +481,8 @@ D=B^{-1}AB \ \Leftrightarrow \ A=BDB^{-1}
 $A = QR$, wobei $Q$ orthogonal und R oben dreieckig.\\
 \textbf{Vorgehen}
 \begin{itemize}\itemsep0pt
- \item $Q$ berechnen durch Gram-Schmidt mit den Spalten von $A$, beginnend bei der ersten
- \item Die Koeffizienten von $R$ ergeben sich durch Umstellen der jeweiligen Gram-Schmidt Gleichungen auf die Spalten von $A$
+ \item $Q$ berechnen durch Gram-Schmidt mit den Spalten von $A$, \textbf{beginnend bei der ersten}
+ \item Die Koeffizienten von $R$ ergeben sich aus den Gram-Schmidt Gleichungen wie folgt: $r_{i,i}=||c_i||$ und $r_{i,j}=\frac{\langle v_j,c_i \rangle}{r_{i,i}}$
  \item Alternativ gilt: $R = Q^TA$
 \end{itemize}
 
@@ -538,7 +538,7 @@ orthogonal.
 \end{enumerate}
 \subsubsection{Kompression}
 \begin{itemize}\itemsep0pt
-\item Rang k Matrix $A_{(k)}=V\Sigma_{(k)}W^\top$. Die Matrix $\Sigma_{(k)}$ enthält nur die Singulärwerte $\sigma_1, ...,\sigma_k$. ($\sigma_{k+1}, ...,\sigma_{n/m}=0$).\\
+\item Rang k Matrix $A_{(k)}=V\Sigma_{(k)}W^\top$. Die Matrix $\Sigma_{(k)}$ enthält nur die Singulärwerte $\sigma_1, ...,\sigma_k$. ($\sigma_{k+1}, ...,\sigma_{n/m}$ mit 0 ersetzen).\\
 \item Frobenius-Norm $|| A ||_F = \sqrt[]{\sum_{i=1}^{m} \sum_{j=1}^{m} {a^{2}_{i,j}}}$\\
 \item Es gilt: $|| A-A_{(k)} ||_F \leq || A-B ||_F$ mit $B$ als eine beliebige Matrix des $\mathbb{R}^{m\times n}$ mit $rang(B) \leq rang(A_{(k)}) = k$
 \item Speicheraufwand einer Matrix $A\in \mathbb{R}^{m\times n}$: $rang(A) \cdot (m+n)$
