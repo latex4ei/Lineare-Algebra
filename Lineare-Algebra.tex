@@ -98,8 +98,7 @@ Cauchy-Schwarz-Ungleichung: \qquad
 \left| \sprod{x}{y} \right| \le \| x\| \cdot \| y\|
 \end{array}\end{math}\\
 $\mathbb{K}$ steht für $\mathbb{R}$ und $\mathbb{C}$\\
-$\mathbb{I}_n$ ist die $nxn$-Einheitsmatrix.
-
+$\mathbb{I}_n$ ist die $nxn$-Einheitsmatrix. \qquad$e_i$ ist der i-te Einheitsvektor.
 \subsection{Matrizen}
 % ----------------------------------------------------------------------
 Die Matrix $A=(a_{ij}) \in \mathbb K^{m\times n}$ hat $m$ Zeilen mit Index $i$ und $n$ Spalten mit Index $j$.
@@ -309,14 +308,29 @@ $B\subset V$ heißt
 \item \textbf{Orthonormalsystem}, wenn $B$ Orthogonalssystem u. $\forall v\in B: \norm{v}=1$
 \item \textbf{Orthonormalbasis(ONB)},  wenn $B$ Orthonormalsystem u. Basis von V ist
 \end{itemize}
-\textbf{Matrix $A$ heißt orthogonal}, wenn $A^\top A = \mathbb{I}_n$
-\begin{itemize}\itemsep0pt
+Eine \textbf{quadratische Matrix $A$ heißt orthogonal}, wenn $A^\top A = \mathbb{I}_n$
+\begin{tabular}{p{0.45\linewidth}p{0.45\linewidth}}
+\begin{itemize}
 \item $A^{-1}=A^\top $
 \item $\det{A}=\pm1$
 \item Spalten bilden ONB
 \item Zeilen bilden ONB
-\item $\norm{Av}=\norm{v}$
-\end{itemize}\itemsep0pt
+\item $\|Av\|=\|v\|$ % Using \norm for the norm
+\end{itemize}
+&
+\begin{itemize}
+\item Drehmatrix mit Drehung um den Ursprung:\ \
+$\begin{pmatrix}
+\cos(\alpha) & -\sin(\alpha)\\
+\sin(\alpha) & \cos(\alpha)
+\end{pmatrix}$
+\item (Dreh-)Spiegelmatrix mit Spiegelung an der Geraden $y=tan(\frac{\alpha}{2})\cdot x$:\ \
+$\begin{pmatrix}
+\cos(\alpha) & \sin(\alpha)\\
+\sin(\alpha) & -\cos(\alpha)
+\end{pmatrix}$
+\end{itemize}
+\end{tabular}
 \textbf{Orthonormalisierungsvefahren einer Basis $\{v_1,\ldots,v_n\}$ nach Gram-Schmidt}
 \begin{enumerate}\itemsep0pt
 \item $b_1=\frac{c_1}{\|c_1\|}$\ \ mit \ \ $c_1=v_1$ \ \ (Vektor mit vielen 0en oder 1en)
@@ -482,7 +496,7 @@ $A = QR$, wobei $Q$ orthogonal und R oben dreieckig.\\
 \textbf{Vorgehen}
 \begin{itemize}\itemsep0pt
  \item $Q$ berechnen durch Gram-Schmidt mit den Spalten von $A$, \textbf{beginnend bei der ersten}
- \item Die Koeffizienten von $R$ ergeben sich aus den Gram-Schmidt Gleichungen wie folgt: $r_{i,i}=||c_i||$ und $r_{i,j}=\frac{\langle v_j,c_i \rangle}{r_{i,i}}$
+ \item Die Koeffizienten von $R$ ergeben sich aus den Gram-Schmidt Gleichungen wie folgt: $r_{i,i}=||c_i||^2$ und $r_{i,j}=\frac{\langle v_j,c_i \rangle}{r_{i,i}}$
  \item Alternativ gilt: $R = Q^TA$
 \end{itemize}
 
