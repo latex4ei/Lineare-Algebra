@@ -504,7 +504,6 @@ $A = QR$, wobei $Q$ orthogonal und R oben dreieckig.\\
  \item Die Koeffizienten von $R$ ergeben sich aus den Gram-Schmidt Gleichungen wie folgt: $r_{i,i}=||c_i||^2$ und $r_{i,j}=\frac{\langle v_j,c_i \rangle}{r_{i,i}}$
  \item Alternativ gilt: $R = Q^TA$
 \end{itemize}
-
 \subsection{Kleinstes-Quadrate-Problem}
 Für $Ax = b$ lautet die
 \textbf{Normalengleichung}
@@ -513,7 +512,21 @@ $A^TAx^* = A^Tb$\\
 \textbf{Lösen} durch Gauß oder Umstellen: $x^* = (A^TA)^{-1}A^Tb$\\
 Für  $A=QR$ lautet die Lösung $x^* = R^{-1}Q^Tb$\\
 $\Rightarrow$ optimale Lösung mit minimalem quadratischen Fehler (existiert immer).
-
+\subsubsection{Rezept: Quadratische Funktion finden}
+Gegeben: mehrere Punkte ($x_i, y_i$) im Koordinatensystem\\
+Gesucht: Koeffizienten $\mathtt{a}, \mathtt{b}, \mathtt{c}$ für $f(x)=\mathtt{a}\cdot x^2+\mathtt{b}\cdot x+\mathtt{c}\cdot 1=y$\\
+\textbf{Vorgehen:}
+\begin{enumerate}
+\item $b = (y_1, y_2, \dots)^\top$ \qquad $A = \begin{pmatrix}
+x_1^2 & x_1 & 1 \\[3pt]
+x_2^2 & x_2 & 1 \\[3pt]
+\vdots & \vdots & \vdots
+\end{pmatrix}$ \\
+\textit{Für eine lineare Funktion erste Spalte von $A$ streichen}
+\item Lösungsvektor $x^*$ mithilfe von $A$ und $b$ berechnen
+\item $x^*=(\mathtt{a}, \mathtt{b}, \mathtt{c})^\top \rightarrow \ f(x)=\mathtt{a}x^2+\mathtt{b}x+\mathtt{c}$
+\end{enumerate}
+%\textbf{Lineare Funktion $(bx+c)$:} erste Spalte von $A$ streichen. $x^*=(\mathtt{b}, \mathtt{c})^\top$
 \subsection{Singulärwertzerlegung}
 Bei der Singulärwertzerlegung wird eine beliebige Matrix $A\in \mathbb{R}^{m\times n}$ als Produkt dreier Matrizen $V$, $\Sigma$ und $W$ geschrieben
 \begin{equation*}
