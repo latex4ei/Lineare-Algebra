@@ -5,88 +5,59 @@
 % ======================================================================	
 
 % Dokumentklasse (Schriftgröße 6, DIN A4, Artikel)
-\documentclass[6pt,a4paper]{scrartcl}
+\documentclass[ngerman, 6pt]{latex4ei/latex4ei_sheet}
+\title{Lineare Algebra}
+\author{Lukas Kompatscher}
+\myemail{lukas.kompatscher@tum.de}
+\mywebsite{www.latex4ei.de}
 
 % Pakete laden
-\usepackage[utf8]{inputenc}		% Zeichenkodierung: UTF-8 (für Umlaute)   
-\usepackage[german]{babel}		% Deutsche Sprache
-\usepackage{multicol}			% Spaltenpaket
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{esint}				% erweiterte Integralsymbole
-\usepackage{multicol}			% ermöglicht Seitenspalten  
-\usepackage{wasysym}			% Blitz
-\usepackage{graphicx}
-\usepackage[colorlinks=true, urlcolor=black]{hyperref}
+\usepackage{setspace}
   
 % Seitenlayout und Ränder:
-\usepackage{geometry}
-\geometry{a4paper,landscape, left=6mm,right=6mm, top=0mm, bottom=3mm,includeheadfoot} 
-
-%Kopf- und Fußzeile
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-
-   \fancyfoot[C]{\textbf{Lineare Algebra} von Lukas Kompatscher (\href{mailto:lukas.kompatscher@tum.de}{lukas.kompatscher@tum.de})}
-   \renewcommand{\headrulewidth}{0.0pt} %obere Linie ausblenden
-   \renewcommand{\footrulewidth}{0.1pt} %untere Linie
-
-   \fancyfoot[R]{Stand: \today \qquad \thepage}
-   \fancyfoot[L]{Homepage: www.latex4ei.de - Fehler bitte sofort melden.}
-	
-% Schriftart SANS für bessere Lesbarkeit bei kleiner Schrift
-\renewcommand{\familydefault}{\sfdefault} 
-
+\titlespacing*{\section}{0pt}{2pt}{2pt}
+\titlespacing*{\subsection}{.5pt}{1pt}{2pt}
+\setstretch{1.1}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\colorlet{col_section}{black}
 
 % Custom Commands
-\renewcommand{\thesubsection}{\arabic{subsection}}
 \newcommand{\me}[1]{\ensuremath{\left\{#1\right\}}}
 \newcommand{\dme}[2]{\ensuremath{\left\{#1\,\vert\,#2 \right\}}}
-\newcommand{\abs}[1]{\ensuremath{\left\vert#1\right\vert}}
 \newcommand{\un}[1]{\; \unit{#1} }
 \newcommand{\unf}[2]{\;\left[ \unitfrac{#1}{#2} \right]}
-\newcommand{\norm}[2][\relax]{\ifx#1\relax \ensuremath{\left\Vert#2\right\Vert}\else \ensuremath{\left\Vert#2\right\Vert_{#1}}\fi}
 \newcommand{\enbrace}[1]{\ensuremath{\left(#1\right)}}
 \newcommand{\nira}[1]{\ensuremath{\overset{n \rightarrow \infty}{\longrightarrow}}}
 \newcommand{\os}[2]{\ensuremath{\overset{#1}{#2}}}
 \makeatletter
-\newcommand{\Ra}[0]{\ensuremath{\Rightarrow}}
-\newcommand{\ra}[0]{\ensuremath{\rightarrow}}
 \newcommand{\gk}[1]{\ensuremath{\left\lfloor#1\right\rfloor}}
-\newcommand{\sprod}[2]{\ensuremath{%
-  \setbox0=\hbox{\ensuremath{#2}}
-  \dimen@\ht0
-  \advance\dimen@ by \dp0
-  \left\langle #1\rule[-\dp0]{0pt}{\dimen@},#2\right\rangle}}
   
 %Custom functions
 \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\rang}{rang}
 \DeclareMathOperator{\col}{col}
 \DeclareMathOperator{\row}{row}
 \DeclareMathOperator{\Kern}{kern}
 \DeclareMathOperator{\proj}{proj}
 
-
-
 % Dokumentbeginn
 % ======================================================================
 \begin{document}
+
+\IfFileExists{git.id}{\input{git.id}}{}
+\ifdefined\GitRevision\mydate{\GitNiceDate\ (git \GitRevision)}\fi
+\ifdefined\GitIssuesURL
+  \ifdefined\setissueslinkurl
+    \setissueslinkurl{\GitIssuesURL} % Set the actual URL
+  \fi
+\fi
+
 %\section{}
 % ----------------------------------------------------------------------
-
-% Aufteilung in Spalten
-\begin{multicols*}{4}
-\parbox{2.3cm}{
-	\includegraphics[height=2cm]{./img/Logo.pdf}
-}
-\parbox{4cm}{
-	\huge{\textbf{Lineare Algebra}}
-}
-\subsection{Allgemeines} % (fold)
+\maketitle
+\section{Allgemeines} % (fold)
 \label{sub:allgemeines}
 
 Dreiecksungleichung \qquad \qquad \qquad
@@ -99,21 +70,20 @@ Cauchy-Schwarz-Ungleichung: \qquad
 \end{array}\end{math}\\
 $\mathbb{K}$ steht für $\mathbb{R}$ und $\mathbb{C}$\\
 $\mathbb{I}_n$ ist die $nxn$-Einheitsmatrix. \qquad$e_i$ ist der i-te Einheitsvektor.
-\subsection{Matrizen}
+\section{Matrizen}
 % ----------------------------------------------------------------------
 Die Matrix $A=(a_{ij}) \in \mathbb K^{m\times n}$ hat $m$ Zeilen mit Index $i$ und $n$ Spalten mit Index $j$.
 
-\subsubsection{Allgemeine Rechenregeln}
-\textbf{Merke:} Zeile vor Spalte! (Multiplikation, Indexreihenfolge, etc.)\\
-
+\subsection{Allgemeine Rechenregeln}
+\textbf{Merke:} Zeile vor Spalte! (Multiplikation, Indexreihenfolge, etc.)
 \begin{tabular}{ll}	
 	1)  $A+0=A$ & 2)  $1 \cdot A=A$ \\
 	3)  $A+B=B+A$ & 4) $A \cdot B \ne B \cdot A$ (im Allg.) \\
 	5)  $(A+B)+C=A+(B+C)$ & 6) $\lambda (A+B) = \lambda A + \lambda B$\\ 
-\end{tabular}
+\end{tabular}\\
 Multiplikation von $A\in \mathbb K^{m\times r}$ und $B\in \mathbb K^{r\times n}$: $AB\in\mathbb K^{m\times n}$
 
-\subsubsection{Elementare Zeilenumformungen (EZF) (gilt äquiv. für Spalten)}
+\subsection{Elementare Zeilenumformungen (EZF) (gilt äquiv. für Spalten)}
 $A \in \mathbb K^{m\times n}$ hat $m$ Zeilen $z_i\in \mathbb K^n$
 \begin{itemize}\itemsep0pt
 \item Vertauschen von Zeilen
@@ -121,7 +91,7 @@ $A \in \mathbb K^{m\times n}$ hat $m$ Zeilen $z_i\in \mathbb K^n$
 \item Addition des $\lambda$-fachen der Zeile $z_i$ zur Zeile $z_j$
 \end{itemize}
 
-\subsubsection{Transponieren}
+\subsection{Transponieren}
 $A=(a_{ij})\ \in \mathbb K^{m\times n}$ gilt: $A^\top=(a_{ji})\ \in \mathbb K^{n\times m}$\\
 \textbf{Regeln:}\\
 $(A+B)^\top=A^\top+B^\top$\qquad $(A\cdot B)^\top=B^\top\cdot A^\top$\qquad \\
@@ -134,8 +104,8 @@ $AA^\top=\mathbb{I}_n \quad \Leftrightarrow \quad A^\top=A^{-1} \quad \Leftright
 $A\in \mathbb C^{n\times n}$ ist hermitesch, falls $A=\overline{A}^\top$  \quad (kmplx. konj. u. transp.)
 
 
-\subsubsection{Inverse Matrix von $A\in \mathbb K^{n\times n}$}
-Für die inverse Matrix $A^{-1}$ von $A$ gilt: $A^{-1}A=\mathbb{I}_n$\\
+\subsection{Inverse Matrix}
+Für die inverse Matrix $A^{-1}$ von $A\in \mathbb K^{n\times n}$ gilt: $A^{-1}A=\mathbb{I}_n$\\
 $(A^{-1})^{-1}=A$ \qquad $(AB)^{-1}=B^{-1}A^{-1}$ \\
 $(A^\top)^{-1}=(A^{-1})^\top$\\
 \\
@@ -151,8 +121,9 @@ d & -b \\
 -c & a
 \end{pmatrix}$
 
-\subsubsection{Rang einer Matrix $A\in \mathbb K^{m\times n}$}
-{\tiny (N0-Zeilen = Nicht-Null-Zeilen)}\\ \\
+\subsection{Rang einer Matrix}
+$A\in \mathbb K^{m\times n}$ 
+{(N0-Zeilen = Nicht-Null-Zeilen)}\\ \\
 \begin{minipage}{\columnwidth}
 \textbf{Bringe A auf ZSF} \\
 Rang (Zeilrang) $\rang(A)$: Anzahl N0-Zeilen \\     
@@ -166,7 +137,7 @@ Spaltenrang: Anzahl der N0-Spalten\\
 Spaltenraum $\col(A)$: Erzeugnis der Spalten, $\text{Basis}(\col(A)) = \{\text{ N0-Spalten }\}$ \\
 Bild = Spaltenraum: Erzeugnis der Spalten 
 \end{minipage}
-\subsubsection{Matrixpotenzen}
+\subsection{Matrixpotenzen}
 Gegeben: $A \in\mathbb{R}^{mxn}, x \in\mathbb{R}^n$.\\
 Gesucht: Lösung von $A^n$.\\
 \begin{itemize}
@@ -184,7 +155,7 @@ Gesucht: $A^n$.
 	\end{pmatrix}$.
 \end{itemize}
 
-\subsubsection{Lineares Gleichungssystem LGS}
+\subsection{Lineares Gleichungssystem LGS}
 Das LGS $Ax=b$ kurz $(A|b)$ mit $A\in \mathbb K^{m\times n}$, $x\in \mathbb K^n$, $b\in \mathbb K^m$ hat $m$ Gleichungen und $n$ Unbekannte.\\
 \\
 \textbf{Lösbarkeitskriterium:}\\
@@ -195,8 +166,8 @@ Das LGS hat eine Lsg. wenn $\det A \not= 0$ \quad $\rightarrow \exists A^{-1}$ \
 Das homogene LGS: $(A|0)$ hat stets die triviale Lösung $0$\\
 Summen und Vielfache der Lösungen von $(A|0)$ sind wieder Lösungen.
 
-\subsubsection{Determinante von $A\in \mathbb K^{n\times n}$: $\det(A)=|A|$}
-
+\subsection{Determinante}
+$A\in \mathbb K^{n\times n}$: $\det(A)=|A|$
 \begin{itemize}\itemsep0pt
 \item $|A|=\sum\limits_{i\text{ oder }j=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \\ 
 Entwicklung nach $j$-ter Spalte oder $i$-ter Zeile
@@ -218,20 +189,21 @@ Entwicklung nach $j$-ter Spalte oder $i$-ter Zeile
 \end{itemize}
 \textbf{Vereinfachung für Spezialfall $A\in \mathbb K^{2\times 2}$}\\
 $A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
-
-\subsubsection{Äquivalente Aussagen für $A\in \mathbb K^{n\times n}$}
+\subsection{Hauptsatz invertierbarer quadratischer Matrizen}
 \begin{tabular}{ll}
 	1)  $A$ ist invertierbar & 2) $\dim(\col(A))=\dim(\row(A))=n$\\
 	3)  $\Kern(A)={0}$ & 4) Die strenge ZSF von $A$ ist $\mathbb{I}_n$\\
-	5) $\det(A)\ne0$ & 6) Zeilen/Spalten von $A$ linear unabhängig\\
-	7) $Ax=b$ hat eine & 8) 0 ist kein Singulärwert von $A$\\\ \ \ \ eindeutige Lösung $\forall b\in\mathbb{R}^n$ & 9) Lineare Abbildung ist bijektiv\\
-	10)  $\rang(A)=n$ & 11) 0 ist kein Eigenwert von $A$\\
-
-\end{tabular}
-
-\subsection{Vektoren}
+	5) $\det(A)\ne0$ & 6) Zeilen/Spalten von $A$ linear unabh.\\
+	7) $Ax=b$ hat eine & 8) $0$ ist kein Singulärwert von $A$\\\ \ \ \ eindeutige Lösung $\forall b\in\mathbb{R}^n$ & 9) Lineare Abbildung ist bijektiv\\
+	10)  $\rang(A)=n$ & 11) $0$ ist kein Eigenwert von $A$\\
+	12) $\col(A)=\mathbb{R}^n$ & 13) $A$ ist Produkt elementarer Matrizen\\
+\end{tabular}\\ \\
+\textit{Ist eine dieser Aussagen wahr, so sind alle Aussagen wahr!}
+\section{Vektoren}
+\begin{minipage}{\columnwidth}
 Ein Vektor ist ein $n$-Tupel reeller oder komplexer Zahlen, also ein Element aus dem $\mathbb K^n$.
-\subsubsection{Skalarprodukt $\langle v,w \rangle: V\times V \rightarrow \mathbb R$} 
+\subsection{Skalarprodukt}
+$\langle v,w \rangle: V\times V \rightarrow \mathbb R$ 
 	\begin{enumerate}\itemsep0pt
 	\item Linear: $\langle u,v+w \rangle=\langle u,v \rangle + \langle u,w \rangle \land \langle u,\lambda v \rangle = \lambda \langle u, v \rangle$ 
 	\item Symmetrisch: $\langle v,w \rangle=\langle w,v \rangle$
@@ -248,8 +220,8 @@ $\langle v,w \rangle_A=v^\top A w$\\
 $v = \proj_a(v) + \proj_{a^\perp}(v) \Rightarrow \proj_{a^\perp}(v) = v - \proj_a(v)$\\
 \textbf{Winkel} \quad 	$\cos \phi = \frac{\sprod{a}{b}}{\norm{a} \norm{b}} $ \qquad
 $\phi = \arccos \enbrace{ \frac{\sprod{a}{b} }{\norm{a} \norm{b} } }$
-
-\subsubsection{Kreuzprodukt (Vektorprodukt)}
+\end{minipage}
+\subsection{Kreuzprodukt (Vektorprodukt)}
 $a\times b=\left( \begin{matrix} a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1\end{matrix}\right)$\qquad $a,b\ \in \mathbb R^3$\\
 \\
 $a\times b \perp a,b$ \qquad (falls $a\times b=0\ \Leftrightarrow\ a,b$\ linear abhängig)\\
@@ -261,7 +233,7 @@ Graßmann-Identität: $a\times(b \times c)\equiv b\cdot(a \cdot c)-c\cdot(a \cdo
 $[a,b,c]:=\langle  a\times b, c\rangle=\det (a,b,c)\mathrel{\widehat{=}}$\ Volumen des Spates.\\
 $[a,b,c]>0\ \Leftrightarrow\ a,b,c$\ bilden Rechtssystem \\ $[a,b,c]=0\ \Leftrightarrow\ \{a,b,c\}$\ linear abhängig
 
-\subsection{Vektorräume (VR)}
+\section{Vektorräume (VR)}
 % --------------------------------------------------------------
 Eine nichtleere Menge V mit zwei Verknüpfungen $+$ und $\cdot$ heißt $K$-Vektorraum über dem Körper $\mathbb K$. \\
 \textbf{Bedingung $(u,v,w\in V \quad \lambda,\mu \in \mathbb{R})$}
@@ -276,14 +248,15 @@ Eine nichtleere Menge V mit zwei Verknüpfungen $+$ und $\cdot$ heißt $K$-Vekto
 \item $(\lambda \mu)v = \lambda(\mu v)$
 \item $1v=v$
 \end{enumerate}\itemsep0pt
-\subsubsection{Untervektorraum (UVR) $U\subset V (u,v\in U \quad \lambda\in\mathbb{R})$}
+\subsection{Untervektorraum (UVR)}
+$U\subset V (u,v\in U \quad \lambda\in\mathbb{R})$
 \begin{enumerate}\itemsep0pt
 \item $U\ne \emptyset \qquad (0\in U)$
 \item $u+v\in U$
 \item $\lambda u \in U$
 \end{enumerate}
 
-\subsubsection{Basis (Jeder VR und jeder UVR besitzt eine Basis!)} % (fold)
+\subsection{Basis (Jeder VR und jeder UVR besitzt eine Basis!)} % (fold)
 \label{sub:basis}
  Eine Teilmenge $B\subset V$ heißt Basis von $V$, wenn gilt:
 \begin{itemize}\itemsep0pt
@@ -291,12 +264,12 @@ Eine nichtleere Menge V mit zwei Verknüpfungen $+$ und $\cdot$ heißt $K$-Vekto
 	\item $B$ ist linear unabhängig
 \end{itemize}    
 
-\subsubsection{Dimension}
+\subsection{Dimension}
 $n=\dim(V)=\abs{B} = $ Mächtigkeit von $B$\\
 Mehr als $n$ Vektoren aus $V$ sind stets linear abhängig. \\
 Für jeden UVR $U \subset V$ gilt: $\dim (U) \le \dim (V)$ 
 
-\subsubsection{Linearkombination}
+\subsection{Linearkombination}
 Jeder Vektor $v\in\mathbb{K}^n$ kann als Linearkombination einer Basis $B=\{b_1, \dots, b_n\} \subset \mathbb{K}^n$ dargestellt werden
 \begin{equation*}
 v=\lambda_1 b_1 + \dots + \lambda_n b_n \Rightarrow \text{Gauß} \ \Big(b_1 \ b_2 \ b_3 \ |\ v\ \Big)
@@ -305,7 +278,7 @@ v=\lambda_1 b_1 + \dots + \lambda_n b_n \Rightarrow \text{Gauß} \ \Big(b_1 \ b_
 Vektoren heißen linear unabhängig, wenn aus: \\
 $\lambda_1 v_1 + \dots + \lambda_n v_n = 0$ folgt, dass $\lambda_1 = \dots = \lambda_n = 0$
 
-\subsubsection{Orthogonalität}
+\subsection{Orthogonalität}
 $B\subset V$ heißt
 \begin{itemize}\itemsep0pt
 \item \textbf{Orthogonalsystem}, wenn $\forall v,w\in B: v\perp w$
@@ -315,7 +288,7 @@ $B\subset V$ heißt
 \end{itemize}
 Eine \textbf{quadratische Matrix $A$ heißt orthogonal}, wenn $A^\top A = \mathbb{I}_n$
 \begin{tabular}{p{0.45\linewidth}p{0.45\linewidth}}
-\begin{itemize}
+\begin{itemize}\itemsep6pt
 \item $A^{-1}=A^\top $
 \item $\det{A}=\pm1$
 \item Spalten bilden ONB
@@ -366,7 +339,7 @@ Alternative Methode
 \item $\proj_U(v)=\lambda_1 b_1 +\dots +\lambda_r b_r$
 \end{enumerate}
 
-\subsection{Norm}
+\section{Norm}
 \textbf{Norm von Vektoren}
 $\norm{a}=\sqrt{\sprod{a}{a}} =\sqrt{a_1^2+a_2^2+\ldots +a_n^2}$\\
 $\forall v, w \in \mathbb{R}^n$:
@@ -375,7 +348,8 @@ $\forall v, w \in \mathbb{R}^n$:
 \item $\norm{v+w}\le \norm{v} + \norm{w}$
 \end{enumerate}
 
-\subsection{Lineare Abbildungen}
+\begin{minipage}{\columnwidth}
+\section{Lineare Abbildungen}
 Abbildung $f:V\rightarrow W$ ist linear, wenn
 \begin{enumerate}\itemsep0pt
 \item $f(0)=0$
@@ -386,7 +360,8 @@ $\Rightarrow$ Abbildung als Matrix darstellbar (siehe Abbildungsmatrix)\\ \\
 \textbf{Injektiv}, wenn aus $f(x_1)=f(x_2) \Rightarrow x_1=x_2$\\
 \textbf{Surjektiv}: $\forall y\in W \ \exists x\in V:f(x)=y$\\ \quad (Alle Werte aus $W$ werden angenommen.)\\
 \textbf{Bijektiv}(Eineindeutig): $f$ ist injektiv und surjektiv $\Rightarrow$ $f$ umkehrbar.
-\subsubsection{Koordinatenvektor bezüglich einer Basis $B$}
+\end{minipage}
+\subsection{Koordinatenvektor bezüglich einer Basis $B$}
 Gegeben: Vektorraum $V \in\mathbb{R}^n$, $v \in V$.\\
 Gesucht: $[v]_B$ (Koordinaten von $v$ bezüglich der Basis $B$).
 \begin{enumerate}
@@ -394,7 +369,7 @@ Gesucht: $[v]_B$ (Koordinaten von $v$ bezüglich der Basis $B$).
 	\item Löse das LGS $Bx = v$.
 	\item $[v]_B = x$.
 \end{enumerate}
-\subsubsection{Abbildungsmatrix (Darstellungsmatrix)}
+\subsection{Abbildungsmatrix (Darstellungsmatrix)}
 Lineare Abbildung $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ \\
 Abbildungsmatrix spaltenweise:
 $[f] = \begin{pmatrix}f(e_1) & \dots & f(e_n)
@@ -430,17 +405,18 @@ ist die Darstellungsmatrix von $f$ bzgl. $B$ und $C$. \\
 \item $f$ bijektiv, wenn $[f]$ invertierbar
 \item $f$ ist bijektiv $\Leftrightarrow f$ ist injektiv $\Leftrightarrow f$ ist surjektiv
 \end{itemize}
-\subsubsection{Transformationsmatrix}
+\subsection{Transformationsmatrix}
 Transformationsmatrix der Koordinaten von $B$ zu $C$: $_CT_B$\\
 \textbf{Regeln und Berechnung:}
-\begin{itemize}
+\begin{itemize}\itemsep2pt
 	\item $_{\mathbb{I}_n}T_B = T_B$: Vektoren der Basis $B$
 	\item $_CT_B = {_CT} \cdot T_B$
 	\item $(_CT_B)^{-1} = {_BT_C}$
 	\item $[v]_C = {_CT_B}\cdot[v]_B$
 	\item $C=B\cdot {_CT_B}$
 \end{itemize}
-\subsection{Diagonalisierung (Eigenwerte und Eigenvektoren)}
+\begin{minipage}{\columnwidth}
+\section{Diagonalisierung (Eigenwerte und Eigenvektoren)}
 Gegeben: Quadratische Matrix $A \in \mathbb{R}^{n\times n}$.\\
 Gilt $Av = \lambda v$ mit $v\ne 0$, so nennt man
 \begin{itemize}\itemsep0pt
@@ -465,7 +441,8 @@ und $D$ eine Diagonalmatrix ist.
 \item Eine symmetrische Matrix hat nur reelle Eigenwerte und ist diagonalisierbar.
 \item Die Determinante einer Matrix ist gleich dem Produkt der Eigenwerte: $\det(A)=\lambda_1\dots\lambda_n$
 \end{itemize}
-\subsubsection{Rezept: Diagonalisieren}
+\end{minipage}
+\subsection{Rezept: Diagonalisieren}
 Gegeben: $A\in \mathbb{R}^{n\times n}$
 \begin{enumerate}\itemsep0pt
 \item Bestimme das charakteristische Polynom von $A$
@@ -496,45 +473,60 @@ $D=\diag(\lambda_1,\dots,\lambda_n)$ ist die Diagonalmatrix der Eigenwerte.
 D=B^{-1}AB \ \Leftrightarrow \ A=BDB^{-1}
 \end{equation*}
 \end{enumerate}
-\subsection{QR-Zerlegung}
-$A = QR$, wobei $Q$ orthogonal und R oben dreieckig.\\
+\subsection{Orthogonale Diagonalisierbarkeit}
+Eine symmetrische Matrix $A \in \mathbb{R}^{n \times n}$ ist orthogonal diagonalisierbar.
+\begin{equation*}
+D=Q^{T}AQ \ \Leftrightarrow \ A=QDQ^{T}
+\end{equation*}
+\textbf{Vorgehen}
+\begin{itemize}
+\item Eigenwerte und Eigenvektoren bestimmten
+\item Eigenvektoren zum selben Eigenwert orthonormalisieren (Gram-Schmidt)
+\item Eigenvektoren zu unterschiedlichen Eigenwerten sind bereits orthogonal (ggf. noch normieren)
+\item $Q=(b_1 \ \dots b_n)$ setzt sich aus den orthonormalen EV zusammen. \\
+$D=\diag(\lambda_1,\dots,\lambda_n)$ ist die Diagonalmatrix der Eigenwerte.
+\end{itemize}
+\section{QR-Zerlegung}
+\begin{minipage}{\columnwidth}
+$A = QR$, wobei $Q$ orthonormale Spalten hat und $R$ oben dreieckig ist.\\
 \textbf{Vorgehen}
 \begin{itemize}\itemsep0pt
  \item $Q$ berechnen durch Gram-Schmidt mit den Spalten von $A$, \textbf{beginnend bei der ersten}
  \item Die Koeffizienten von $R$ ergeben sich aus den Gram-Schmidt Gleichungen wie folgt: $r_{i,i}=||c_i||^2$ und $r_{i,j}=\frac{\langle v_j,c_i \rangle}{r_{i,i}}$
  \item Alternativ gilt: $R = Q^TA$
 \end{itemize}
-\subsection{Kleinstes-Quadrate-Problem}
+\end{minipage}
+\section{Kleinstes-Quadrate-Problem}
 Für $Ax = b$ lautet die
 \textbf{Normalengleichung}
 $A^TAx^* = A^Tb$\\
 \\
 \textbf{Lösen} durch Gauß oder Umstellen: $x^* = (A^TA)^{-1}A^Tb$\\
 Für  $A=QR$ lautet die Lösung $x^* = R^{-1}Q^Tb$\\
-$\Rightarrow$ optimale Lösung mit minimalem quadratischen Fehler (existiert immer).
-\subsubsection{Rezept: Quadratische Funktion finden}
+$\Rightarrow$ optimale Lösung mit minimalem quadratischen Fehler (gibt es immer).
+\subsection{Rezept: Quadratische Funktion finden}
 Gegeben: mehrere Punkte ($x_i, y_i$) im Koordinatensystem\\
 Gesucht: Koeffizienten $\mathtt{a}, \mathtt{b}, \mathtt{c}$ für $f(x)=\mathtt{a}\cdot x^2+\mathtt{b}\cdot x+\mathtt{c}\cdot 1=y$\\
-\textbf{Vorgehen:}
+\textbf{Vorgehen}
 \begin{enumerate}
 \item $b = (y_1, y_2, \dots)^\top$ \qquad $A = \begin{pmatrix}
 x_1^2 & x_1 & 1 \\[3pt]
 x_2^2 & x_2 & 1 \\[3pt]
 \vdots & \vdots & \vdots
 \end{pmatrix}$ \\
-\textit{Für eine lineare Funktion erste Spalte von $A$ streichen}
+\textit{Falls Ausgleichsgerade gesucht: erste Spalte von $A$ streichen}
 \item Lösungsvektor $x^*$ mithilfe von $A$ und $b$ berechnen
 \item $x^*=(\mathtt{a}, \mathtt{b}, \mathtt{c})^\top \rightarrow \ f(x)=\mathtt{a}x^2+\mathtt{b}x+\mathtt{c}$
 \end{enumerate}
 %\textbf{Lineare Funktion $(bx+c)$:} erste Spalte von $A$ streichen. $x^*=(\mathtt{b}, \mathtt{c})^\top$
-\subsection{Singulärwertzerlegung}
+\section{Singulärwertzerlegung}
 Bei der Singulärwertzerlegung wird eine beliebige Matrix $A\in \mathbb{R}^{m\times n}$ als Produkt dreier Matrizen $V$, $\Sigma$ und $W$ geschrieben
 \begin{equation*}
 A=V\Sigma W^\top
 \end{equation*}
 mit $V\in \mathbb{R}^{m\times m}$, $\Sigma\in \mathbb{R}^{m\times n}$ und $W\in \mathbb{R}^{n\times n}$.\\
 $V$ und $W$ sind orthogonal, $\Sigma$ ist eine Diagonalmatrix.
-\subsubsection{Rezept: Singulärwertzerlegung}
+\subsection{Rezept: Singulärwertzerlegung}
 Gegeben: $A\in \mathbb{R}^{m\times n}$
 \begin{enumerate}\itemsep0pt
 \item Bestimme alle Eigenwerte $\lambda_j$ und Eigenvektoren $w_j$ der Matrix $A^\top A\in \mathbb{R}^{n\times n}$ und ordne sie \\ $\lambda_1\ge\lambda_2\ge \dots \ge \lambda_r>\lambda_{r+1}=\dots=\lambda_n=0$ mit $r\le n$
@@ -568,18 +560,20 @@ v_1 & \dots & v_m
 orthogonal.
 \item $A=V\Sigma W^\top$
 \end{enumerate}
-\subsubsection{Kompression}
+\begin{minipage}{\columnwidth}
+\subsection{Kompression}
 \begin{itemize}\itemsep0pt
-\item Rang k Matrix $A_{(k)}=V\Sigma_{(k)}W^\top$. Die Matrix $\Sigma_{(k)}$ enthält nur die Singulärwerte $\sigma_1, ...,\sigma_k$. ($\sigma_{k+1}, ...,\sigma_{n/m}$ mit 0 ersetzen).\\
+\item Rang k Matrix $A_{(k)}=V\Sigma_{(k)}W^\top$. Die Matrix $\Sigma_{(k)}$ enthält nur die Singulärwerte $\sigma_1, ...,\sigma_k$.\qquad ($\sigma_{k+1}, ...,\sigma_{n/m}$ mit 0 ersetzen).\\
 \item Frobenius-Norm $|| A ||_F = \sqrt[]{\sum_{i=1}^{m} \sum_{j=1}^{n} {a^{2}_{i,j}}}$\\
 \item Es gilt: $|| A-A_{(k)} ||_F \leq || A-B ||_F$ mit $B$ als eine beliebige Matrix des $\mathbb{R}^{m\times n}$ mit $rang(B) \leq rang(A_{(k)}) = k$
 \item Speicheraufwand einer Matrix $A\in \mathbb{R}^{m\times n}$: $rang(A) \cdot (m+n)$
 \end{itemize}
-\subsection{Lineare Differentialgleichungen und Rekursive Folgen}
-\subsubsection{Lösen einer linearen Differentialgleichung}
+\end{minipage}
+\section{Lineare Differentialgleichungen \& Rekursive Folgen}
+\subsection{Lösen einer linearen Differentialgleichung}
 Gegeben: $y'(t) = \lambda y(t)$, mit $y(0) = c$\\
 Lösung: $y(t) = ce^{\lambda t}$ mit $c \in \mathbb R$\\
-\subsubsection{Lösen eines Systems linearer Differentialgleichungen}
+\subsection{Lösen eines Systems linearer Differentialgleichungen}
 Gegeben: $y'(t) = Ay$, mit $y_1(0) , ..., y_n(0)$\\ 
 Wobei $A \in \mathbb R^{nxn}, y_1(0) , ..., y_n(0) \in \mathbb R, y,y'\in\mathbb R^n$.\\
 Lösung:\\
@@ -593,7 +587,7 @@ Lösung:\\
 	= c_1e^{\lambda_1t}v_1+...+c_ne^{\lambda_nt}v_n$.
 	\item Anfangswerte einsetzen und Werte für $c_1$, bis $c_n$ bestimmen.
 \end{enumerate}
-\subsubsection{Rekursive Folgen}
+\subsection{Rekursive Folgen}
 Gegeben: $x_{n+1} = {\alpha} x_n + {\beta} x_{n-1}$, Anfangswerte: $x_0$, $x_1$\\
 Lösung:\\
 \begin{enumerate}
@@ -627,8 +621,8 @@ Lösung:\\
 	x_{0}\end{pmatrix}
 	\end{equation*}
 \end{enumerate}
-\subsection{Definitheit und Quadratische Funktionen}
-\subsubsection{Definitheit}
+\section{Definitheit und Quadratische Funktionen}
+\subsection{Definitheit}
 Eine symmetrische Matrix $A \in\mathbb R^{n\times n}$ mit den Eigenwerten (EW) $\lambda_1, ..., \lambda_n$ heißt:
 \begin{itemize}\itemsep0pt
 \item positiv definit: EW positiv $<=> v^{\top}Av> 0,\quad\forall v \in\mathbb R^n\backslash \{0\}$
@@ -636,7 +630,7 @@ Eine symmetrische Matrix $A \in\mathbb R^{n\times n}$ mit den Eigenwerten (EW) $
 \item positiv semidefinit: EW $\geq 0 <=> v^{\top}Av\geq 0,\quad\forall v \in\mathbb R^n$
 \item negativ semidefinit: EW $\leq 0 <=> v^{\top}Av\leq 0,\quad\forall v \in\mathbb R^n$
 \end{itemize}
-\subsubsection{Quadratische Funktionen}
+\subsection{Quadratische Funktionen}
 \textbf{Form:} $f(x)=x^{\top}Ax+b^{\top}x+c = \langle x,Ax \rangle + \langle b,x \rangle + c$\\
 Berechnen von Extrempunkten:
 \begin{itemize}\itemsep0pt
@@ -645,7 +639,6 @@ Berechnen von Extrempunkten:
 \item positiv/negativ semidefinit: Existenz von Extremum hängt von Lösbarkeit des LGS $2Ax=-b$ ab. (nicht eindeutig!)
 \end{itemize}
 
-\end{multicols*}
 % Ende der Spalten
 
 
