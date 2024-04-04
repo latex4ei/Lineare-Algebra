@@ -17,9 +17,10 @@
 % Seitenlayout und Ränder:
 \titlespacing*{\section}{0pt}{2pt}{2pt}
 \titlespacing*{\subsection}{.5pt}{1pt}{2pt}
-\setstretch{1.2}
+\setstretch{1.1}
 \titleformat*{\section}{\large\bfseries}
 \titleformat*{\subsection}{\normalsize\bfseries}
+\colorlet{col_section}{black}
 
 % Custom Commands
 \newcommand{\me}[1]{\ensuremath{\left\{#1\right\}}}
@@ -40,8 +41,6 @@
 \DeclareMathOperator{\row}{row}
 \DeclareMathOperator{\Kern}{kern}
 \DeclareMathOperator{\proj}{proj}
-
-
 
 % Dokumentbeginn
 % ======================================================================
@@ -416,6 +415,7 @@ Transformationsmatrix der Koordinaten von $B$ zu $C$: $_CT_B$\\
 	\item $[v]_C = {_CT_B}\cdot[v]_B$
 	\item $C=B\cdot {_CT_B}$
 \end{itemize}
+\begin{minipage}{\columnwidth}
 \section{Diagonalisierung (Eigenwerte und Eigenvektoren)}
 Gegeben: Quadratische Matrix $A \in \mathbb{R}^{n\times n}$.\\
 Gilt $Av = \lambda v$ mit $v\ne 0$, so nennt man
@@ -441,6 +441,7 @@ und $D$ eine Diagonalmatrix ist.
 \item Eine symmetrische Matrix hat nur reelle Eigenwerte und ist diagonalisierbar.
 \item Die Determinante einer Matrix ist gleich dem Produkt der Eigenwerte: $\det(A)=\lambda_1\dots\lambda_n$
 \end{itemize}
+\end{minipage}
 \subsection{Rezept: Diagonalisieren}
 Gegeben: $A\in \mathbb{R}^{n\times n}$
 \begin{enumerate}\itemsep0pt
@@ -477,11 +478,17 @@ Eine symmetrische Matrix $A \in \mathbb{R}^{n \times n}$ ist orthogonal diagonal
 \begin{equation*}
 D=Q^{T}AQ \ \Leftrightarrow \ A=QDQ^{T}
 \end{equation*}
-Um $Q$ zu erhalten zuerst die Eigenvektoren zum selben Eigenwert orthonormalisieren (Gram-Schmidt).
-Eigenvektoren zu unterschiedlichen Eigenwerten sind orthogonal und müssen nur noch normiert werden.
+\textbf{Vorgehen}
+\begin{itemize}
+\item Eigenwerte und Eigenvektoren bestimmten
+\item Eigenvektoren zum selben Eigenwert orthonormalisieren (Gram-Schmidt)
+\item Eigenvektoren zu unterschiedlichen Eigenwerten sind bereits orthogonal (ggf. noch normieren)
+\item $Q=(b_1 \ \dots b_n)$ setzt sich aus den orthonormalen EV zusammen. \\
+$D=\diag(\lambda_1,\dots,\lambda_n)$ ist die Diagonalmatrix der Eigenwerte.
+\end{itemize}
 \section{QR-Zerlegung}
 \begin{minipage}{\columnwidth}
-$A = QR$, wobei $Q$ orthogonal und R oben dreieckig.\\
+$A = QR$, wobei $Q$ orthonormale Spalten hat und $R$ oben dreieckig ist.\\
 \textbf{Vorgehen}
 \begin{itemize}\itemsep0pt
  \item $Q$ berechnen durch Gram-Schmidt mit den Spalten von $A$, \textbf{beginnend bei der ersten}
@@ -496,18 +503,18 @@ $A^TAx^* = A^Tb$\\
 \\
 \textbf{Lösen} durch Gauß oder Umstellen: $x^* = (A^TA)^{-1}A^Tb$\\
 Für  $A=QR$ lautet die Lösung $x^* = R^{-1}Q^Tb$\\
-$\Rightarrow$ optimale Lösung mit minimalem quadratischen Fehler (existiert immer).
+$\Rightarrow$ optimale Lösung mit minimalem quadratischen Fehler (gibt es immer).
 \subsection{Rezept: Quadratische Funktion finden}
 Gegeben: mehrere Punkte ($x_i, y_i$) im Koordinatensystem\\
 Gesucht: Koeffizienten $\mathtt{a}, \mathtt{b}, \mathtt{c}$ für $f(x)=\mathtt{a}\cdot x^2+\mathtt{b}\cdot x+\mathtt{c}\cdot 1=y$\\
-\textbf{Vorgehen:}
+\textbf{Vorgehen}
 \begin{enumerate}
 \item $b = (y_1, y_2, \dots)^\top$ \qquad $A = \begin{pmatrix}
 x_1^2 & x_1 & 1 \\[3pt]
 x_2^2 & x_2 & 1 \\[3pt]
 \vdots & \vdots & \vdots
 \end{pmatrix}$ \\
-\textit{Falls lineare Funktion gesucht: erste Spalte von $A$ streichen}
+\textit{Falls Ausgleichsgerade gesucht: erste Spalte von $A$ streichen}
 \item Lösungsvektor $x^*$ mithilfe von $A$ und $b$ berechnen
 \item $x^*=(\mathtt{a}, \mathtt{b}, \mathtt{c})^\top \rightarrow \ f(x)=\mathtt{a}x^2+\mathtt{b}x+\mathtt{c}$
 \end{enumerate}
@@ -553,6 +560,7 @@ v_1 & \dots & v_m
 orthogonal.
 \item $A=V\Sigma W^\top$
 \end{enumerate}
+\begin{minipage}{\columnwidth}
 \subsection{Kompression}
 \begin{itemize}\itemsep0pt
 \item Rang k Matrix $A_{(k)}=V\Sigma_{(k)}W^\top$. Die Matrix $\Sigma_{(k)}$ enthält nur die Singulärwerte $\sigma_1, ...,\sigma_k$.\qquad ($\sigma_{k+1}, ...,\sigma_{n/m}$ mit 0 ersetzen).\\
@@ -560,6 +568,7 @@ orthogonal.
 \item Es gilt: $|| A-A_{(k)} ||_F \leq || A-B ||_F$ mit $B$ als eine beliebige Matrix des $\mathbb{R}^{m\times n}$ mit $rang(B) \leq rang(A_{(k)}) = k$
 \item Speicheraufwand einer Matrix $A\in \mathbb{R}^{m\times n}$: $rang(A) \cdot (m+n)$
 \end{itemize}
+\end{minipage}
 \section{Lineare Differentialgleichungen \& Rekursive Folgen}
 \subsection{Lösen einer linearen Differentialgleichung}
 Gegeben: $y'(t) = \lambda y(t)$, mit $y(0) = c$\\
