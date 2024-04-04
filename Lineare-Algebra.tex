@@ -13,6 +13,8 @@
 
 % Pakete laden
 \usepackage{setspace}
+\usepackage{tikz}
+\usetikzlibrary{matrix, positioning}
   
 % Seitenlayout und Ränder:
 \titlespacing*{\section}{0pt}{2pt}{2pt}
@@ -69,7 +71,7 @@ Cauchy-Schwarz-Ungleichung: \qquad
 \left| \sprod{x}{y} \right| \le \| x\| \cdot \| y\|
 \end{array}\end{math}\\
 $\mathbb{K}$ steht für $\mathbb{R}$ und $\mathbb{C}$\\
-$\mathbb{I}_n$ ist die $nxn$-Einheitsmatrix. \qquad$e_i$ ist der i-te Einheitsvektor.
+$\mathbb{I}_n$ ist die $n\times n$-Einheitsmatrix. \qquad$e_i$ ist der i-te Einheitsvektor.
 \section{Matrizen}
 % ----------------------------------------------------------------------
 Die Matrix $A=(a_{ij}) \in \mathbb K^{m\times n}$ hat $m$ Zeilen mit Index $i$ und $n$ Spalten mit Index $j$.
@@ -137,6 +139,7 @@ Spaltenrang: Anzahl der N0-Spalten\\
 Spaltenraum $\col(A)$: Erzeugnis der Spalten, $\text{Basis}(\col(A)) = \{\text{ N0-Spalten }\}$ \\
 Bild = Spaltenraum: Erzeugnis der Spalten 
 \end{minipage}
+\begin{minipage}{\columnwidth}
 \subsection{Matrixpotenzen}
 Gegeben: $A \in\mathbb{R}^{mxn}, x \in\mathbb{R}^n$.\\
 Gesucht: Lösung von $A^n$.\\
@@ -154,7 +157,7 @@ Gesucht: $A^n$.
 	0 & \ldots & \lambda_k^n \\
 	\end{pmatrix}$.
 \end{itemize}
-
+\end{minipage}
 \subsection{Lineares Gleichungssystem LGS}
 Das LGS $Ax=b$ kurz $(A|b)$ mit $A\in \mathbb K^{m\times n}$, $x\in \mathbb K^n$, $b\in \mathbb K^m$ hat $m$ Gleichungen und $n$ Unbekannte.\\
 \\
@@ -172,6 +175,29 @@ $A\in \mathbb K^{n\times n}$: $\det(A)=|A|$
 \item $|A|=\sum\limits_{i\text{ oder }j=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \\ 
 Entwicklung nach $j$-ter Spalte oder $i$-ter Zeile
 %\item $|A|=\sum\limits_{j=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \qquad Entwicklung n. $i$-ter Zeile
+\item Determinante einer $3\times 3$-Matrix:
+\[\det(A)=
+\begin{tikzpicture}[baseline=(current bounding box.center)]
+    \matrix (m) [matrix of math nodes,left delimiter=(,right delimiter=)] {
+        a_{11} & a_{12} & a_{13} \\
+        a_{21} & a_{22} & a_{23} \\
+        a_{31} & a_{32} & a_{33} \\
+    };
+    \matrix (extended) [matrix of math nodes, right=0.05cm of m.east, anchor=west] {
+        a_{11} & a_{12} \\
+        a_{21} & a_{22} \\
+        a_{31} & a_{32} \\
+    };
+    
+    \draw[thin, red] (m-1-1.north west) -- (m-3-3.south east);
+    \draw[thin, red] (m-1-2.north west) -- (extended-3-1.south east);
+    \draw[thin, red] (m-1-3.north west) -- (extended-3-2.south east);
+    \draw[thin, blue] (m-1-3.north east) -- (m-3-1.south west);
+    \draw[thin, blue] (extended-1-1.north east) -- (m-3-2.south west);
+    \draw[thin, blue] (extended-1-2.north east) -- (m-3-3.south west);
+\end{tikzpicture}
+\]
+$=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{12}a_{21}a_{33}-a_{11}a_{23}a_{32}-a_{13}a_{22}a_{31}$
 \item $\det\begin{pmatrix}A&0\\C&D\end{pmatrix}=\det\begin{pmatrix}A&B\\0&D\end{pmatrix}=\det(A)\cdot\det(D)$
 \item $\begin{vmatrix}\lambda_1&&* \\ &\ddots& \\ 0&&\lambda_n \end{vmatrix} = \lambda_1\cdot \ldots\cdot \lambda_n = \begin{vmatrix} \lambda_1&&0  \\  &\ddots& \\  *&&\lambda_n \end{vmatrix}$
 \item $A=B \cdot C \quad \Rightarrow \quad |A|=|B| \cdot |C|$
@@ -340,7 +366,7 @@ Alternative Methode
 \end{enumerate}
 
 \section{Norm}
-\textbf{Norm von Vektoren}
+\textbf{Euklidische Norm von Vektoren}
 $\norm{a}=\sqrt{\sprod{a}{a}} =\sqrt{a_1^2+a_2^2+\ldots +a_n^2}$\\
 $\forall v, w \in \mathbb{R}^n$:
 \begin{enumerate}\itemsep0pt
@@ -405,6 +431,7 @@ ist die Darstellungsmatrix von $f$ bzgl. $B$ und $C$. \\
 \item $f$ bijektiv, wenn $[f]$ invertierbar
 \item $f$ ist bijektiv $\Leftrightarrow f$ ist injektiv $\Leftrightarrow f$ ist surjektiv
 \end{itemize}
+\ \\
 \subsection{Transformationsmatrix}
 Transformationsmatrix der Koordinaten von $B$ zu $C$: $_CT_B$\\
 \textbf{Regeln und Berechnung:}
@@ -587,6 +614,7 @@ Lösung:\\
 	= c_1e^{\lambda_1t}v_1+...+c_ne^{\lambda_nt}v_n$.
 	\item Anfangswerte einsetzen und Werte für $c_1$, bis $c_n$ bestimmen.
 \end{enumerate}
+\ \\
 \subsection{Rekursive Folgen}
 Gegeben: $x_{n+1} = {\alpha} x_n + {\beta} x_{n-1}$, Anfangswerte: $x_0$, $x_1$\\
 Lösung:\\
