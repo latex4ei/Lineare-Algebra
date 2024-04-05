@@ -139,7 +139,7 @@ Spaltenrang: Anzahl der N0-Spalten\\
 Spaltenraum $\col(A)$: Erzeugnis der Spalten, $\text{Basis}(\col(A)) = \{\text{ N0-Spalten }\}$ \\
 Bild = Spaltenraum: Erzeugnis der Spalten 
 \end{minipage}
-\begin{minipage}{\columnwidth}
+%\begin{minipage}{\columnwidth}
 \subsection{Matrixpotenzen}
 Gegeben: $A \in\mathbb{R}^{mxn}, x \in\mathbb{R}^n$.\\
 Gesucht: Lösung von $A^n$.\\
@@ -157,7 +157,7 @@ Gesucht: $A^n$.
 	0 & \ldots & \lambda_k^n \\
 	\end{pmatrix}$.
 \end{itemize}
-\end{minipage}
+%\end{minipage}
 \subsection{Lineares Gleichungssystem LGS}
 Das LGS $Ax=b$ kurz $(A|b)$ mit $A\in \mathbb K^{m\times n}$, $x\in \mathbb K^n$, $b\in \mathbb K^m$ hat $m$ Gleichungen und $n$ Unbekannte.\\
 \\
@@ -172,12 +172,14 @@ Summen und Vielfache der Lösungen von $(A|0)$ sind wieder Lösungen.
 \subsection{Determinante}
 $A\in \mathbb K^{n\times n}$: $\det(A)=|A|$
 \begin{itemize}\itemsep0pt
-\item $|A|=\sum\limits_{i\text{ oder }j=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \\ 
+\item $|A|=\sum\limits_{i\text{ oder }j=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \\
 Entwicklung nach $j$-ter Spalte oder $i$-ter Zeile
 %\item $|A|=\sum\limits_{j=1}^n (-1)^{i+j} \cdot a_{ij} \cdot |A_{ij}|$ \qquad Entwicklung n. $i$-ter Zeile
+\item Determinante einer $2\times 2$-Matrix: \\
+$A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
 \item Determinante einer $3\times 3$-Matrix:
 \[\det(A)=
-\begin{tikzpicture}[baseline=(current bounding box.center)]
+\begin{tikzpicture}[baseline=(current bounding box.center), scale=0.5]
     \matrix (m) [matrix of math nodes,left delimiter=(,right delimiter=)] {
         a_{11} & a_{12} & a_{13} \\
         a_{21} & a_{22} & a_{23} \\
@@ -213,8 +215,8 @@ $=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{12}a_{21}a_{33}-a_
 \item Zeile/Spalte mit $\lambda$ multiplizieren, $|A|$ um Faktor $\lambda$ größer
 \item Addition des $\lambda$-fachen der Zeile X zur Zeile Y ändert $|A|$ nicht 
 \end{itemize}
-\textbf{Vereinfachung für Spezialfall $A\in \mathbb K^{2\times 2}$}\\
-$A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
+%\textbf{Vereinfachung für Spezialfall $A\in \mathbb K^{2\times 2}$}\\
+%$A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
 \subsection{Hauptsatz invertierbarer quadratischer Matrizen}
 \begin{tabular}{ll}
 	1)  $A$ ist invertierbar & 2) $\dim(\col(A))=\dim(\row(A))=n$\\
@@ -262,18 +264,26 @@ $[a,b,c]>0\ \Leftrightarrow\ a,b,c$\ bilden Rechtssystem \\ $[a,b,c]=0\ \Leftrig
 \section{Vektorräume (VR)}
 % --------------------------------------------------------------
 Eine nichtleere Menge V mit zwei Verknüpfungen $+$ und $\cdot$ heißt $K$-Vektorraum über dem Körper $\mathbb K$. \\
-\textbf{Bedingung $(u,v,w\in V \quad \lambda,\mu \in \mathbb{R})$}
-\begin{enumerate}\itemsep0pt
+\textbf{Bedingung $(u,v,w\in V \quad \lambda,\mu \in \mathbb{R})$}\\ \\
+\begin{tabular}{ll}
+\begin{minipage}{.5\columnwidth}
+\begin{itemize}\itemsep0pt
 \item $v+w\in V$ \qquad $\lambda v \in V$
 \item $u+(v+w)=(u+v)+w$
 \item $0\in V: v+0=v$
 \item $v'\in V: v+v'=0$
+\end{itemize}
+\end{minipage}
+&
+\begin{minipage}{.5\columnwidth}
+\begin{itemize}\itemsep0pt
 \item $v+w=w+v$
 \item $\lambda(v+w)=\lambda v + \lambda w$
 \item $(\lambda + \mu)v=\lambda v +\mu v $
 \item $(\lambda \mu)v = \lambda(\mu v)$
-\item $1v=v$
-\end{enumerate}\itemsep0pt
+\end{itemize}\itemsep0pt
+\end{minipage}
+\end{tabular}
 \subsection{Untervektorraum (UVR)}
 $U\subset V (u,v\in U \quad \lambda\in\mathbb{R})$
 \begin{enumerate}\itemsep0pt
@@ -368,11 +378,9 @@ Alternative Methode
 \section{Norm}
 \textbf{Euklidische Norm von Vektoren}
 $\norm{a}=\sqrt{\sprod{a}{a}} =\sqrt{a_1^2+a_2^2+\ldots +a_n^2}$\\
-$\forall v, w \in \mathbb{R}^n$:
-\begin{enumerate}\itemsep0pt
-\item $\norm{\lambda v}=\abs{\lambda}\norm v$
-\item $\norm{v+w}\le \norm{v} + \norm{w}$
-\end{enumerate}
+$\forall v, w \in \mathbb{R}^n$:\\
+1. $\norm{\lambda v}=\abs{\lambda}\norm v$
+\qquad 2. $\norm{v+w}\le \norm{v} + \norm{w}$
 
 \begin{minipage}{\columnwidth}
 \section{Lineare Abbildungen}
@@ -665,6 +673,49 @@ Berechnen von Extrempunkten:
 \item positiv definit: Minimum bei $x^{*}=-\frac{1}{2}A^{-1}b$
 \item negativ definit: Maximum bei $x^{*}=-\frac{1}{2}A^{-1}b$
 \item positiv/negativ semidefinit: Existenz von Extremum hängt von Lösbarkeit des LGS $2Ax=-b$ ab. (nicht eindeutig!)
+\end{itemize}
+
+\begin{minipage}{\columnwidth}
+\section{Wichtige Zusammenhänge}
+\subsection{Rang}
+\begin{itemize}
+	\item $\rang(A)<n \rightarrow$ Es gibt freie Variablen
+	\item $rang(A)=dim(col(A))=dim(row(A))$
+	\item $rang(A)=rang(A^\top)$
+	\item $rang(A)+dim(kern(A))=n$
+	\item $rang(AB)\leq rang(A) \leq n$
+\end{itemize}
+\end{minipage}
+\subsection{Kern}
+\begin{itemize}
+	\item $kern(A)=\{x\in \mathbb{R}^n: Ax=0\}$
+	\item $kern(A)=kern(A^\top A)$
+	\item $kern(A^\top) = kern(AA^\top )$
+	\item $dim(kern(A))=\text{\#freie Variablen}$
+\end{itemize}
+\subsection{Zeilen-/Spaltenraum}
+\begin{itemize}
+	\item $col(A)\neq col(A')$ mit $A'=A$ in ZSF
+	\item $row(A)=row(A')$ mit $A'=A$ in ZSF
+	\item $col(A)=row(A^\top)$
+	\item $col(AB)\subset col(A)$
+	\item $row(AB)\subset row(B)$
+\end{itemize}
+\subsection{Orthogonalität und Komplement}
+\begin{itemize}
+	\item $(col(A))^\perp=(row(A^\top ))^\perp$
+	\item $(row(A))^\perp = kern(A)$
+	\item $(col(A))^\perp = kern(A^\top)$
+	\item $row(A) \perp kern(A)$
+	\item $col(A) \perp kern(A^\top)$
+	\item $U_1 \subset U_2 \Rightarrow U_1^\perp \supset U_2^\perp$
+	\item $U_1=U_2^\perp \Leftrightarrow U_1^\perp =U_2$
+	\item $dim(U) + dim(U^\perp )=n$
+\end{itemize}
+\subsection{Frobenius-Norm}
+\begin{itemize}
+	\item $\norm{A}_F^2=\sigma_1^2+\sigma_2^2+\dots \sigma_n^2$
+	\item $\norm{A-A_{(k)}}_F^2=\sigma_{k+1}^2+\dots \sigma_n^2$
 \end{itemize}
 
 % Ende der Spalten
