@@ -5,10 +5,10 @@
 % ======================================================================	
 
 % Dokumentklasse (Schriftgröße 6, DIN A4, Artikel)
-\documentclass[ngerman, 6pt]{latex4ei/latex4ei_sheet}
+\documentclass[german, 6pt]{latex4ei/latex4ei_sheet}
 \title{Lineare Algebra}
 \author{Lukas Kompatscher}
-\myemail{lukas.kompatscher@tum.de}
+\myemail{info@latex4ei.de}
 \mywebsite{www.latex4ei.de}
 
 % Pakete laden
@@ -604,6 +604,21 @@ orthogonal.
 \item Speicheraufwand einer Matrix $A\in \mathbb{R}^{m\times n}$: $rang(A) \cdot (m+n)$
 \end{itemize}
 \end{minipage}
+\subsection{Exkurs: Hauptkomponentenanalyse (PCA)}
+Gegeben: Matrix $W$ der Eigenvektoren von $\mathbf{A\cdot A^\top}$\\
+Gesucht: Projektionen der Spalten von $A$ auf den Unterraum $U_{(k)}$ als Koordinaten bzgl. der ONB der Eigenvektoren von $AA^\top$\\
+Vorgehen: 
+\begin{enumerate}
+	\item Normiere $w^1, \dots , w^k$
+	\item $\overline{w}=(w^1 \dots w^k)\in \mathbb{R}^{m\times k}$
+	\item Die Koordinatenvektoren $y^1, \dots , y^k \in \mathbb{R}^{k}$ die Vektoren $x^1,\dots , x^n$ bzgl. der Basis $\{w^1, \dots , w^k\}$ von $U_{(k)}$ ausdrücken, sind die Spalten von \begin{equation*}\overline{w}^\top A=\begin{pmatrix}
+	(w^{1})^{\top} \\
+	\vdots \\
+	(w^{k})^{\top}
+	\end{pmatrix}
+	\cdot A
+	\end{equation*}
+\end{enumerate}
 \section{Lineare Differentialgleichungen \& Rekursive Folgen}
 \subsection{Lösen einer linearen Differentialgleichung}
 Gegeben: $y'(t) = \lambda y(t)$, mit $y(0) = c$\\
