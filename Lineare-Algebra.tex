@@ -44,6 +44,10 @@
 \DeclareMathOperator{\Kern}{kern}
 \DeclareMathOperator{\proj}{proj}
 
+%Custom font
+\usepackage{lmodern}
+\renewcommand{\ttdefault}{lmtt}
+
 % Dokumentbeginn
 % ======================================================================
 \begin{document}
@@ -139,7 +143,7 @@ Spaltenrang: Anzahl der N0-Spalten\\
 Spaltenraum $\col(A)$: Erzeugnis der Spalten, $\text{Basis}(\col(A)) = \{\text{ N0-Spalten }\}$ \\
 Bild = Spaltenraum: Erzeugnis der Spalten 
 \end{minipage}
-%\begin{minipage}{\columnwidth}
+\begin{minipage}{\columnwidth}
 \subsection{Matrixpotenzen}
 Gegeben: $A \in\mathbb{R}^{mxn}, x \in\mathbb{R}^n$.\\
 Gesucht: Lösung von $A^n$.\\
@@ -157,7 +161,7 @@ Gesucht: $A^n$.
 	0 & \ldots & \lambda_k^n \\
 	\end{pmatrix}$.
 \end{itemize}
-%\end{minipage}
+\end{minipage}
 \subsection{Lineares Gleichungssystem LGS}
 Das LGS $Ax=b$ kurz $(A|b)$ mit $A\in \mathbb K^{m\times n}$, $x\in \mathbb K^n$, $b\in \mathbb K^m$ hat $m$ Gleichungen und $n$ Unbekannte.\\
 \\
@@ -439,7 +443,7 @@ ist die Darstellungsmatrix von $f$ bzgl. $B$ und $C$. \\
 \item $f$ bijektiv, wenn $[f]$ invertierbar
 \item $f$ ist bijektiv $\Leftrightarrow f$ ist injektiv $\Leftrightarrow f$ ist surjektiv
 \end{itemize}
-\ \\
+
 \subsection{Transformationsmatrix}
 Transformationsmatrix der Koordinaten von $B$ zu $C$: $_CT_B$\\
 \textbf{Regeln und Berechnung:}
@@ -462,8 +466,10 @@ Ist $\lambda$ ein Eigenwert von A, so nennt man den Untervektorraum
 \begin{itemize}\itemsep0pt
 \item $\text{Eig}_A(\lambda) = \{v \in \mathbb{R}^n | Av = \lambda v\}$ den Eigenraum von A zum Eigenwert $\lambda$ und
 \item $\dim({\text{Eig}_A(\lambda))}$ die geometrische Vielfachheit des Eigenwerts $\lambda$
-\item $\text{geo}(\lambda) = \dim(\text{Eig}_A(\lambda))$
+\item $\text{geo}(\lambda) = \dim(\text{Eig}_A(\lambda))$ \\
 \end{itemize}
+\end{minipage}
+\begin{minipage}{\columnwidth}
 \textbf{Diagonalisieren von Matrizen}\\
 $A$ ist diag.bar falls eine invertierbar Matrix $B$ existiert, sodass
 \begin{equation*}
@@ -521,8 +527,8 @@ D=Q^{T}AQ \ \Leftrightarrow \ A=QDQ^{T}
 \item $Q=(b_1 \ \dots b_n)$ setzt sich aus den orthonormalen EV zusammen. \\
 $D=\diag(\lambda_1,\dots,\lambda_n)$ ist die Diagonalmatrix der Eigenwerte.
 \end{itemize}
+
 \section{QR-Zerlegung}
-\begin{minipage}{\columnwidth}
 $A = QR$, wobei $Q$ orthonormale Spalten hat und $R$ oben dreieckig ist.\\
 \textbf{Vorgehen}
 \begin{itemize}\itemsep0pt
@@ -530,7 +536,6 @@ $A = QR$, wobei $Q$ orthonormale Spalten hat und $R$ oben dreieckig ist.\\
  \item Die Koeffizienten von $R$ ergeben sich aus den Gram-Schmidt Gleichungen wie folgt: $r_{i,i}=||c_i||^2$ und $r_{i,j}=\frac{\langle v_j,c_i \rangle}{r_{i,i}}$
  \item Alternativ gilt: $R = Q^TA$
 \end{itemize}
-\end{minipage}
 \section{Kleinstes-Quadrate-Problem}
 Für $Ax = b$ lautet die
 \textbf{Normalengleichung}
@@ -539,6 +544,7 @@ $A^TAx^* = A^Tb$\\
 \textbf{Lösen} durch Gauß oder Umstellen: $x^* = (A^TA)^{-1}A^Tb$\\
 Für  $A=QR$ lautet die Lösung $x^* = R^{-1}Q^Tb$\\
 $\Rightarrow$ optimale Lösung mit minimalem quadratischen Fehler (gibt es immer).
+\begin{minipage}{\columnwidth}
 \subsection{Rezept: Quadratische Funktion finden}
 Gegeben: mehrere Punkte ($x_i, y_i$) im Koordinatensystem\\
 Gesucht: Koeffizienten $\mathtt{a}, \mathtt{b}, \mathtt{c}$ für $f(x)=\mathtt{a}\cdot x^2+\mathtt{b}\cdot x+\mathtt{c}\cdot 1=y$\\
@@ -553,6 +559,7 @@ x_2^2 & x_2 & 1 \\[3pt]
 \item Lösungsvektor $x^*$ mithilfe von $A$ und $b$ berechnen
 \item $x^*=(\mathtt{a}, \mathtt{b}, \mathtt{c})^\top \rightarrow \ f(x)=\mathtt{a}x^2+\mathtt{b}x+\mathtt{c}$
 \end{enumerate}
+\end{minipage}
 %\textbf{Lineare Funktion $(bx+c)$:} erste Spalte von $A$ streichen. $x^*=(\mathtt{b}, \mathtt{c})^\top$
 \section{Singulärwertzerlegung}
 Bei der Singulärwertzerlegung wird eine beliebige Matrix $A\in \mathbb{R}^{m\times n}$ als Produkt dreier Matrizen $V$, $\Sigma$ und $W$ geschrieben
@@ -611,13 +618,13 @@ Vorgehen:
 \begin{enumerate}
 	\item Normiere $w^1, \dots , w^k$
 	\item $\overline{w}=(w^1 \dots w^k)\in \mathbb{R}^{m\times k}$
-	\item Die Koordinatenvektoren $y^1, \dots , y^k \in \mathbb{R}^{k}$ die Vektoren $x^1,\dots , x^n$ bzgl. der Basis $\{w^1, \dots , w^k\}$ von $U_{(k)}$ ausdrücken, sind die Spalten von \begin{equation*}\overline{w}^\top A=\begin{pmatrix}
+	\item Die Koordinatenvektoren $y^1, \dots , y^k \in \mathbb{R}^{k}$ die Vektoren $x^1,\dots , x^n$ bzgl. der Basis $\{w^1, \dots , w^k\}$ von $U_{(k)}$ ausdrücken, sind die Spalten von\\
+	$\overline{w}^\top A=\begin{pmatrix}
 	(w^{1})^{\top} \\
 	\vdots \\
 	(w^{k})^{\top}
 	\end{pmatrix}
-	\cdot A
-	\end{equation*}
+	\cdot A$
 \end{enumerate}
 \section{Lineare Differentialgleichungen \& Rekursive Folgen}
 \subsection{Lösen einer linearen Differentialgleichung}
@@ -691,41 +698,41 @@ Berechnen von Extrempunkten:
 \end{itemize}
 
 \begin{minipage}{\columnwidth}
-\section{Wichtige Zusammenhänge}
+\section{Wichtige Zusammenhänge zur Beweisführung}
 \subsection{Rang}
 \begin{itemize}
 	\item $\rang(A)<n \rightarrow$ Es gibt freie Variablen
-	\item $rang(A)=dim(col(A))=dim(row(A))$
-	\item $rang(A)=rang(A^\top)$
-	\item $rang(A)+dim(kern(A))=n$
-	\item $rang(AB)\leq rang(A) \leq n$
+	\item $\rang(A)=\dim(\col(A))=\dim(\row(A))$
+	\item $\rang(A)=\rang(A^\top)$
+	\item $\rang(A)+\dim(\Kern(A))=n$
+	\item $\rang(AB)\leq \rang(A) \leq n$
 \end{itemize}
 \end{minipage}
 \subsection{Kern}
 \begin{itemize}
-	\item $kern(A)=\{x\in \mathbb{R}^n: Ax=0\}$
-	\item $kern(A)=kern(A^\top A)$
-	\item $kern(A^\top) = kern(AA^\top )$
-	\item $dim(kern(A))=\text{\#freie Variablen}$
+	\item $\Kern(A)=\{x\in \mathbb{R}^n: Ax=0\}$
+	\item $\Kern(A)=\Kern(A^\top A)$
+	\item $\Kern(A^\top) = \Kern(AA^\top )$
+	\item $\dim(\Kern(A))=\text{\#freie Variablen}$
 \end{itemize}
 \subsection{Zeilen-/Spaltenraum}
 \begin{itemize}
-	\item $col(A)\neq col(A')$ mit $A'=A$ in ZSF
-	\item $row(A)=row(A')$ mit $A'=A$ in ZSF
-	\item $col(A)=row(A^\top)$
-	\item $col(AB)\subset col(A)$
-	\item $row(AB)\subset row(B)$
+	\item $\col(A)\neq \col(A')$ mit $A'=A$ in ZSF
+	\item $\row(A)=\row(A')$ mit $A'=A$ in ZSF
+	\item $\col(A)=\row(A^\top)$
+	\item $\col(AB)\subset \col(A)$
+	\item $\row(AB)\subset \row(B)$
 \end{itemize}
 \subsection{Orthogonalität und Komplement}
 \begin{itemize}
-	\item $(col(A))^\perp=(row(A^\top ))^\perp$
-	\item $(row(A))^\perp = kern(A)$
-	\item $(col(A))^\perp = kern(A^\top)$
-	\item $row(A) \perp kern(A)$
-	\item $col(A) \perp kern(A^\top)$
+	\item $(\col(A))^\perp=(\row(A^\top ))^\perp$
+	\item $(\row(A))^\perp = \Kern(A)$
+	\item $(\col(A))^\perp = \Kern(A^\top)$
+	\item $\row(A) \perp \Kern(A)$
+	\item $\col(A) \perp \Kern(A^\top)$
 	\item $U_1 \subset U_2 \Rightarrow U_1^\perp \supset U_2^\perp$
 	\item $U_1=U_2^\perp \Leftrightarrow U_1^\perp =U_2$
-	\item $dim(U) + dim(U^\perp )=n$
+	\item $\dim(U) + \dim(U^\perp )=n$
 \end{itemize}
 \subsection{Frobenius-Norm}
 \begin{itemize}
