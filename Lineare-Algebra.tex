@@ -213,6 +213,16 @@ $=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{12}a_{21}a_{33}-a_
 \end{itemize}
 %\textbf{Vereinfachung für Spezialfall $A\in \mathbb K^{2\times 2}$}\\
 %$A=\begin{pmatrix}a&b\\c&d\end{pmatrix} \Rightarrow \det(A)=|A|=ad-bc$
+\subsection{Ähnlichkeit von Matrizen}
+Zwei Matrizen $A, B \in \mathbb{R}^{n\times n}$ sind ähnlich zueinander, wenn es eine invertierbare Matrix $S$ gibt, sodass $A=SBS^{-1}$. Man schreibt $A \sim B$.\\
+\textbf{Eigenschaften:}
+\begin{itemize}
+	\item $\det(A)=\det(B)$
+	\item $A$ ist inviertierbar $\Leftrightarrow$ $B$ ist invertierbar
+	\item $\rang(A)=\rang(B)$
+	\item $A$ und $B$ haben das gleiche charakteristische Polynom
+\end{itemize}
+
 \subsection{Hauptsatz invertierbarer quadratischer Matrizen}
 \begin{tabular}{ll}
 	1)  $A$ ist invertierbar & 2) $\dim(\col(A))=\dim(\row(A))=n$\\
