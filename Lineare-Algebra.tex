@@ -1,4 +1,4 @@
-% Mathe Formelsammlung für HM1 SoSe 2011
+% Mathe Formelsammlung für Lineare Algebra WiSe 23/24
 % 2 Seiten
 
 % Dokumenteinstellungen
@@ -7,7 +7,7 @@
 % Dokumentklasse (Schriftgröße 6, DIN A4, Artikel)
 \documentclass[german, 6pt]{latex4ei/latex4ei_sheet}
 \title{Lineare Algebra}
-\author{LaTeX4Ei}
+\author{Lukas Kompatscher, Paul Thiel, Justus Rossmeier, Darius Peters}
 \myemail{info@latex4ei.de}
 \mywebsite{www.latex4ei.de}
 
@@ -697,49 +697,6 @@ Berechnen von Extrempunkten:
 \item positiv definit: Minimum bei $x^{*}=-\frac{1}{2}A^{-1}b$
 \item negativ definit: Maximum bei $x^{*}=-\frac{1}{2}A^{-1}b$
 \item positiv/negativ semidefinit: Existenz von Extremum hängt von Lösbarkeit des LGS $2Ax=-b$ ab. (nicht eindeutig!)
-\end{itemize}
-
-\begin{minipage}{\columnwidth}
-\section{Wichtige Zusammenhänge zur Beweisführung}
-\subsection{Rang}
-\begin{itemize}
-	\item $\rang(A)<n \rightarrow$ Es gibt freie Variablen
-	\item $\rang(A)=\dim(\col(A))=\dim(\row(A))$
-	\item $\rang(A)=\rang(A^\top)$
-	\item $\rang(A)+\dim(\Kern(A))=n$
-	\item $\rang(AB)\leq \rang(A) \leq n$
-\end{itemize}
-\end{minipage}
-\subsection{Kern}
-\begin{itemize}
-	\item $\Kern(A)=\{x\in \mathbb{R}^n: Ax=0\}$
-	\item $\Kern(A)=\Kern(A^\top A)$
-	\item $\Kern(A^\top) = \Kern(AA^\top )$
-	\item $\dim(\Kern(A))=\text{\#freie Variablen}$
-\end{itemize}
-\subsection{Zeilen-/Spaltenraum}
-\begin{itemize}
-	\item $\col(A)\neq \col(A')$ mit $A'=A$ in ZSF
-	\item $\row(A)=\row(A')$ mit $A'=A$ in ZSF
-	\item $\col(A)=\row(A^\top)$
-	\item $\col(AB)\subset \col(A)$
-	\item $\row(AB)\subset \row(B)$
-\end{itemize}
-\subsection{Orthogonalität und Komplement}
-\begin{itemize}
-	\item $(\col(A))^\perp=(\row(A^\top ))^\perp$
-	\item $(\row(A))^\perp = \Kern(A)$
-	\item $(\col(A))^\perp = \Kern(A^\top)$
-	\item $\row(A) \perp \Kern(A)$
-	\item $\col(A) \perp \Kern(A^\top)$
-	\item $U_1 \subset U_2 \Rightarrow U_1^\perp \supset U_2^\perp$
-	\item $U_1=U_2^\perp \Leftrightarrow U_1^\perp =U_2$
-	\item $\dim(U) + \dim(U^\perp )=n$
-\end{itemize}
-\subsection{Frobenius-Norm}
-\begin{itemize}
-	\item $\norm{A}_F^2=\sigma_1^2+\sigma_2^2+\dots \sigma_n^2$
-	\item $\norm{A-A_{(k)}}_F^2=\sigma_{k+1}^2+\dots \sigma_n^2$
 \end{itemize}
 
 % Ende der Spalten
